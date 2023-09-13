@@ -1,0 +1,28 @@
+<div id="main" class="d-flex justify-content-center align-items-center">
+  <div>
+    <form #form="ngForm" (ngSubmit)="registra(form)">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input name="name" required ngModel class="form-control" id="name" type="text">
+            <label for="name">Cognome</label>
+            <input name="surname" required ngModel class="form-control" id="name" type="text">
+            <label for="username">Username</label>
+            <input name="username" required ngModel class="form-control" id="username" type="text">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class="form-control" required ngModel>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" required ngModel>
+        </div>
+
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary mt-3">Registrati</button>
+        <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status"></span>
+    </form>
+    <div class="my-2 w-100 d-flex justify-content-center">
+      <a [routerLink]="['/login']" class="active text-info">Accedi</a>
+    </div>
+  </div>
+</div>
