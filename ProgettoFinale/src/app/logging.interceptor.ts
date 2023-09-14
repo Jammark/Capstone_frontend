@@ -15,7 +15,8 @@ export class LoggingInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     console.log('Logging interceptor: ' + request);
-    return next.handle(request).pipe(tap(richiesta => {
+let req = request.clone({ url: decodeURI(request.url)});
+    return next.handle(req).pipe(tap(richiesta => {
       console.table(richiesta);
     }));
   }

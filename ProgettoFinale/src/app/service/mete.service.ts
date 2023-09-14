@@ -22,26 +22,26 @@ export class MeteService {
   }
 
   getCittàById(id:number):Observable<Città>{
-    return this.http.get<Città>(`${environment.baseURL}meta/città/${id}`);
+    return this.http.get<Città>(`${environment.baseURL}mete/città/${id}`);
   }
 
   getDestinazioni():Observable<Destinazione[]>{
-    return this.http.get<Destinazione[]>(`${environment.baseURL}meta/destinazioni`);
+    return this.http.get<Destinazione[]>(`${environment.baseURL}mete/destinazioni`);
   }
 
   getDestinazioneById(id:number):Observable<Destinazione>{
-    return this.http.get<Destinazione>(`${environment.baseURL}meta/destinazioni/${id}`);
+    return this.http.get<Destinazione>(`${environment.baseURL}mete/destinazioni/${id}`);
   }
 
   getMostRatedCities():Observable<Città[]>{
-    return this.http.get<Città[]>(`${environment.baseURL}meta/città/most_rated`);
+    return this.http.get<Città[]>(`${environment.baseURL}mete/${'città'}/most_rated`);
   }
 
   getMostRatedDest():Observable<Destinazione[]>{
-    return this.http.get<Destinazione[]>(`${environment.baseURL}meta/destinazioni/most_rated`);
+    return this.http.get<Destinazione[]>(`${environment.baseURL}mete/destinazioni/most_rated`);
   }
 
   getMetaImgUrl(meta:Meta):string{
-      return `${environment.baseURL}meta/image/${meta.imgUrl}`;
+      return `${environment.baseURL}mete/image/${meta.imgUrl}`;
   }
 }

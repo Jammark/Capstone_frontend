@@ -1,1 +1,47 @@
-<p>home-component works!</p>
+
+<div class="container-fluid w-100 h-100 p-0" id="c">
+
+  <div class="row px-0 py-0 ts position-relative" id="r">
+
+    <ng-container *ngIf="mete && mete.length > 0 else charge"
+      >
+      <ng-container *ngFor="let meta of mete; let i = index">
+    <div class="col-12 ts z-1">
+      <div class="card h-100 w-100 ts position-relative ">
+        <div class="card-header z-2 d-flex flex-column position-absolute w-50 mx-30 my-20" *ngIf="true">
+          <div class="d-flex align-items-center justify-content-between py-1">
+              <h2>{{meta.nome}}</h2>
+              <button class="btn btn-outline-secondary p-1" [routerLink]="['../albums/fotos', meta.id]">
+                <span class="d-flex align-items-center justify-content-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="grey" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                </svg></span>
+              </button>
+          </div>
+        </div>
+<!--
+        <img class="card-img-top w-100 img-fluid z-1" [src]="getMetaImgUrl(meta)" alt="Card image cap" >
+-->
+<div class="w-100 ts middle"></div>
+        <div class="card-body z-3 d-flex flex-column align-items-center w-100 justify-content-center">
+          <p class="card-text w-50">{{meta.descrizione}}</p>
+        </div>
+        <div class="card-footer d-flex align-items-end flex-column">
+
+          <button class="btn btn-otlline-success p-1" [routerLink]="['../albums/fotos', meta.id]">Offerte</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-template #charge>
+  <div class="col-12 d-flex justify-content-center align-items-center">
+    <div class="spinner-grow text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</ng-template>
+  </div>
+
+</div>
+
