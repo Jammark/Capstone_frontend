@@ -33,6 +33,9 @@ export class AuthGuard implements CanActivate , CanActivateChild{
                 alert(
                     'Per visualizzare questa risorsa devi essere loggato!\nAccedi o registrati'
                 );
+                let val = state.url;
+                sessionStorage.setItem('tmpUrl', val);
+                console.log("tentativo di accedere all'indirizzo: "+val)
                 return this.router.createUrlTree(['/login']);
             })
         );

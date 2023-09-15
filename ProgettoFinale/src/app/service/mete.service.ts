@@ -11,14 +11,22 @@ import { Destinazione } from '../model/destinazione';
 })
 export class MeteService {
 
-  private metaSubj = new BehaviorSubject<null | Meta>(null);
+  private metaSubj = new BehaviorSubject<null | Città | Destinazione>(null);
 
   meta$ = this.metaSubj.asObservable();
+/*
+  private cittàSubj = new BehaviorSubject<null | Città>(null);
 
+  città$ = this.cittàSubj.asObservable();
+
+  private destinazioneSubj = new BehaviorSubject<null | Destinazione>(null);
+
+  destinazione$ = this.destinazioneSubj.asObservable();
+*/
   constructor(private http: HttpClient) { }
 
   getCittà():Observable<Città[]>{
-    return this.http.get<Città[]>(`${environment.baseURL}meta/città`);
+    return this.http.get<Città[]>(`${environment.baseURL}mete/città`);
   }
 
   getCittàById(id:number):Observable<Città>{
@@ -44,4 +52,29 @@ export class MeteService {
   getMetaImgUrl(meta:Meta):string{
       return `${environment.baseURL}mete/image/${meta.imgUrl}`;
   }
+
+  register(item:Città | Destinazione):void{
+    this.metaSubj.next(item);
+  }
+
+  deregister():void{
+    this.metaSubj.next(null);
+  }
+/*
+  registerCittà(item:Città):void{
+    this.cittàSubj.next(item);
+  }
+
+  deregisterCittà():void{
+    this.cittàSubj.next(null);
+  }
+
+  registerDest(item:Destinazione):void{
+    this.destinazioneSubj.next(item);
+  }
+
+  deregisterDest():void{
+    this.destinazioneSubj.next(null);
+  }
+  */
 }

@@ -1,0 +1,27 @@
+<p>dettaglio-meta-turistica works!</p>
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card w-100" *ngIf="dest">
+        <div class="card-header">
+          <h2>{{dest.nome}}</h2>
+        </div>
+        <img class="card-img-top w-100 img-fluid z-1 w-100 h-100" [src]="getMetaImgUrl()" alt="Card image cap" >
+        <div class="card-body">
+          <div class="card-text my-2"><h4>{{dest.descrizione}}</h4></div>
+          <div class="card-text my-2"><h4>{{dest.contenutoPrincipale}}</h4></div>
+          <div class="card-text my-2"><h4>{{dest.contenutoSecondario}}</h4></div>
+
+          <div *ngIf="dest.cityIds && dest.cityIds.length > 0">
+          <div class="card-text my-2"><h4>Città rilevanti</h4></div>
+          <ng-container *ngFor="let cityId of dest.cityIds; let i = index">
+            <a [routerLink]="['/meta/citta', cityId]" >{{cities.get(cityId)}}</a>
+          </ng-container>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

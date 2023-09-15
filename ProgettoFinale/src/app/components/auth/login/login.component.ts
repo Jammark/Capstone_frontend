@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
             this.authSrv.login(form.value).subscribe(res => {
               this.isLoading = false;
             alert('Login effettuato!');
-            this.router.navigate(['/home']);
+            let val = sessionStorage.getItem('tmpUrl');
+            val ?  this.router.navigate([val]) : this.router.navigate(['/home']);
             }, err => {
               this.isLoading = false;
               alert('Login sbagliato!');

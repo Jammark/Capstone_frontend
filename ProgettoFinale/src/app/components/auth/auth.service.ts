@@ -23,13 +23,13 @@ export class AuthService {
 
     login(data: { email: string; password: string }) {
         return this.http.post<AuthData>(`${this.baseURL}auth/login`, data).pipe(
-            // Il login è una POST e non una GET perché deve scrivere il token
+
             tap((data) => {
                 console.log(data);
-                this.authSubj.next(data); // Il BehaviourSubject riceve i dati del login per poi passarli alla proprietà user$
+                this.authSubj.next(data);
                 this.utente = data;
                 console.log(this.utente);
-                localStorage.setItem('user', JSON.stringify(data)); // Il localStorage memorizza l'oggetto utente completo di token
+                localStorage.setItem('user', JSON.stringify(data));
                 this.autoLogout(data);
             }),
             catchError(this.errors)
@@ -37,17 +37,17 @@ export class AuthService {
     }
 
     restore() {
-        // Utilizzato nel caso l'applicazione venga abbandonata senza effettuare il logout e poi venga riaperta con il token ancora valido
+
         const user = localStorage.getItem('user');
         if (!user) {
             return;
         }
         const userData: AuthData = JSON.parse(user);
         if (this.jwtHelper.isTokenExpired(userData.accessToken)) {
-            // Consente di leggere il token, nello specifico data e ora di scadenza
+
             return;
         }
-        this.authSubj.next(userData); // Rientrando nell'applicazione, il BehaviourSubject è di nuovo null (vedi riga 16), di conseguenza riceve i valori presenti nel localStorage, letti dalla variabile user e parsati nella variabile useData
+        this.authSubj.next(userData);
         this.autoLogout(userData);
     }
 
@@ -63,11 +63,12 @@ export class AuthService {
     }
 
     logout() {
-        this.authSubj.next(null); // Svuota il BehaviourSubject risportandolo a nulla, e quindi la proprietà user$ ritorna null
+        this.authSubj.next(null);
         localStorage.removeItem('user');
-        this.router.navigate(['/']); // Reindirizzamento alla home a seguito del logout
+        sessionStorage.removeItem('tmpUrl');
+        this.router.navigate(['/']);
         if (this.timeoutLogout) {
-            // Se non è passato il tempo della scadenza del token (vedi riga 67 setTimeout) in caso di abbandono dell'applicazione senza aver effettuato il logout, il metodo cancella il setTimeout per far ripartire il counter
+
             clearTimeout(this.timeoutLogout);
         }
     }

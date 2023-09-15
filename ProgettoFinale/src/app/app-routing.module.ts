@@ -8,17 +8,20 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { CatalogoMeteTuristicheComponent } from './components/catalogo/catalogo-mete-turistiche/catalogo-mete-turistiche.component';
 import { CatatalogoAlloggiComponent } from './components/catalogo/catatalogo-alloggi/catatalogo-alloggi.component';
 import { RicercaTrasportoComponent } from './components/catalogo/ricerca-trasporto/ricerca-trasporto.component';
+import { DettaglioMetaTuristicaComponent } from './components/catalogo/dettaglio-meta-turistica/dettaglio-meta-turistica.component';
+import { MetaTuristicaComponent } from './components/catalogo/meta-turistica/meta-turistica.component';
+import { DettaglioCityComponent } from './components/catalogo/dettaglio-city/dettaglio-city.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard]
+   // canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -34,7 +37,28 @@ const routes: Routes = [
   path:'mete',
   component: CatalogoMeteTuristicheComponent,
   canActivate: [AuthGuard],
+
+},
+{
+  path:'meta',
+  component: MetaTuristicaComponent,
+  canActivate: [AuthGuard],
   children: [
+    {
+      path: 'dest/:id',
+      component: DettaglioMetaTuristicaComponent
+    },
+    {
+      path: 'citta/:id',
+      component: DettaglioCityComponent,
+      children: [
+        {
+          path: 'alloggi/:id',
+          component: CatatalogoAlloggiComponent
+        }
+      ]
+    },
+
     {
       path: 'alloggi/:id',
       component: CatatalogoAlloggiComponent

@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-toggleable-lg navbar-light bg-light sticky-top">
+<nav class="navbar navbar-toggleable-lg bg-light sticky-top">
   <div class="d-flex w-100 align-items-center justify-content-between px-3">
 
           <a class="navbar-brand" href="#">Agenzia viaggi online</a>
@@ -8,7 +8,7 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav mb-2 mb-lg-0 align-items-start align-self-end ml-auto flex-column">
               <li class="nav-item" >
-                  <a *ngIf="user"
+                  <a
 
                       class="nav-link active"
                       aria-current="page"
@@ -18,6 +18,14 @@
                       >Home</a>
 
               </li>
+              <li class="nav-item" >
+                <a *ngIf="!user"
+                    class="nav-link"
+                    [routerLink]="['/login']"
+                    routerLinkActive="active"
+                    >Accedi</a>
+
+            </li>
               <li class="nav-item" >
                   <a *ngIf="user"
                       class="nav-link"
@@ -34,7 +42,7 @@
                       >Saldo</a>
 
               </li>
-              <li class="nav-item align-self-right">
+              <li class="nav-item align-self-right" *ngIf="user">
                 <button type="button" class="btn btn-danger float-end" *ngIf="user" (click)="logout()">Logout</button>
               </li>
 
@@ -46,7 +54,7 @@
             Banvenuto {{ user?.user?.nome }}&nbsp;{{ user?.user?.cognome }}
         </h6>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <button type="button" class="navbar-toggler"  mdbRipple rippleColor="dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
          </div>
