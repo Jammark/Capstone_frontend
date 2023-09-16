@@ -26,19 +26,26 @@ export class CatatalogoAlloggiComponent implements OnInit, OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['metaId']){
-      this.ngOnInit();
+      if(this.metaId){
+        this.aSrv.getHotelsByMeta(this.metaId!).subscribe(lista => {
+          this.hotels = lista;
+          console.log('lista hotel length: '+ this.hotels.length);
+
+
+        });
+
+        this.aSrv.getAppartamentiByMeta(this.metaId!).subscribe(lista => {
+          this.appartamenti = lista;
+
+          console.log('lista appartamenti length: '+ lista.length);
+          console.table(this.appartamenti);
+        });
+    }
     }
   }
 
   ngOnInit(): void {
-    if(this.metaId){
-        this.aSrv.getHotelsByMeta(this.metaId!).subscribe(lista => {
-          this.hotels = lista;
-        })
-        this.aSrv.getAppartamentiByMeta(this.metaId).subscribe(lista => {
-          this.appartamenti = lista;
-        })
-    }
+
   }
 
   selezionaHotel(h:Hotel){

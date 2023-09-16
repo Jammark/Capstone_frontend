@@ -38,7 +38,7 @@ export class AlloggiService {
   }
 
   getAppartamentiByMeta(id:number):Observable<Appartamento[]>{
-    return this.http.get<Appartamento[]>(`${environment.baseURL}alloggi/appartamenti/${id}`);
+    return this.http.get<Appartamento[]>(`${environment.baseURL}alloggi/appartamenti/meta/${id}`);
   }
 
   getMetaImgUrl(a:Alloggio):string{

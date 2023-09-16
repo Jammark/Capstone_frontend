@@ -16,13 +16,26 @@
       <ng-container *ngFor="let hotel of hotels; let i = index">
 
         <div class="col-12" >
-          <div class="card position-relative d-flex" (click)="selezionaHotel(hotel)">
+          <div class="card w-100 h-100">
+          <div class="a row no-gutters justify-content-center w-100 h-100" >
+            <div class="col-3">
+            <object class="w-100" data="../../../../assets/imgs/alloggio1.jpg" type="image/jpg">
             <img class="card-img-top img-fluid z-1 h-100" [src]="getAlloggioImgUrl(hotel)" alt="Card image cap" >
-            <div class="card-body flex-column position-absolute z-1 align-items-start p-0">
+            </object>
+          </div>
+          <div class="col-6">
+            <div class="card-body flex-column z-1 align-items-start p-0 w-50 h-100 w-100">
                 <h2 class="card-title p-2 rounded bg-white text-primary">{{hotel.nome}}</h2>
             </div>
           </div>
+          <div class="col-3">
+          <div class="card-footer d-flex justify-content-center align-items-center w-100 h-100">
+            <button type="button" class="btn btn-success rounded" (click)="selezionaHotel(hotel)">Prenota</button>
+          </div>
+          </div>
+          </div>
         </div>
+      </div>
       </ng-container>
     </div>
       </ng-container>
@@ -30,16 +43,27 @@
         </mdb-tab>
         <mdb-tab title="Appartamenti">
   <div class="col-12 container-fluid w-100 h-100 p-2">
-      <ng-container *ngIf="this.appartamenti && this.appartamenti.length > 0 else charge"
+      <ng-container *ngIf="this.appartamenti && this.appartamenti.length > 0 else charge2"
         >
         <div class="row px-0 py-0 ts">
       <ng-container *ngFor="let apprt of appartamenti; let i = index">
-        <div class="col-lg-2 col-md-3" >
-          <div class="card position-relative d-flex" (click)="selezionaAppartamento(apprt)">
+        <div class="card w-100 h-100">
+          <div class="a row no-gutters justify-content-center w-100 h-100" >
+          <div class="col-3">
+            <object class="w-100" data="../../../../assets/imgs/alloggio1.jpg" type="image/jpg">
             <img class="card-img-top img-fluid z-1 h-100" [src]="getAlloggioImgUrl(apprt)" alt="Card image cap" >
-            <div class="card-body flex-column position-absolute z-1 align-items-start p-0">
+            </object>
+          </div>
+          <div class="col-6">
+            <div class="card-body flex-column z-1 align-items-start p-0  w-100 h-100">
                 <h2 class="card-title p-2 rounded bg-white text-primary">{{apprt.nome}}</h2>
             </div>
+        </div>
+        <div class="col-3">
+        <div class="d-flex justify-content-center align-items-center  w-100 h-100">
+          <button type="button" class="btn btn-success rounded" (click)="selezionaAppartamento(apprt)">Prenota</button>
+        </div>
+      </div>
           </div>
         </div>
 
@@ -51,10 +75,26 @@
   </mdb-tab>
       </mdb-tabs>
       <ng-template #charge>
+        <ng-container *ngIf="!hotels else empty">
         <div class="col-12 d-flex justify-content-center align-items-center">
           <div class="spinner-grow text-success" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
+        </div>
+      </ng-container>
+      </ng-template>
+      <ng-template #charge2>
+        <ng-container *ngIf="!appartamenti else empty">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+          <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </ng-container>
+      </ng-template>
+      <ng-template #empty>
+        <div class="col-12 d-flex justify-content-center align-items-center">
+          <h2>Nessun risultato</h2>
         </div>
       </ng-template>
   </div>
