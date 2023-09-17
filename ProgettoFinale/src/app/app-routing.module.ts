@@ -11,6 +11,8 @@ import { RicercaTrasportoComponent } from './components/catalogo/ricerca-traspor
 import { DettaglioMetaTuristicaComponent } from './components/catalogo/dettaglio-meta-turistica/dettaglio-meta-turistica.component';
 import { MetaTuristicaComponent } from './components/catalogo/meta-turistica/meta-turistica.component';
 import { DettaglioCityComponent } from './components/catalogo/dettaglio-city/dettaglio-city.component';
+import { SaldoComponent } from './components/saldo/saldo.component';
+import { RiepilogoComponent } from './components/riepilogo/riepilogo.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,18 @@ const routes: Routes = [
 {
   path:'mete',
   component: CatalogoMeteTuristicheComponent,
+  canActivate: [AuthGuard],
+
+},
+{
+  path:'saldo',
+  component: SaldoComponent,
+  canActivate: [AuthGuard],
+
+},
+{
+  path:'riepilogo',
+  component: RiepilogoComponent,
   canActivate: [AuthGuard],
 
 },

@@ -1,0 +1,65 @@
+<div class="container-fluid  w-100 h-100 p-0">
+    <div class="row h-100">
+      <ng-container *ngIf="this.prenotazioni && this.prenotazioni.length > 0" else empty>
+        <ng-container *ngFor="let prenotazione of prenotazioni">
+          <div class="col-3"></div>
+        <div class="col-6">
+
+            <div class="card w-100 h-100">
+              <div class="a row no-gutters justify-content-center w-100 h-100" >
+              <div class="col-3">
+                <div class="card-header d-flex flex-column">
+                  <h2 class="card-text">{{getAlloggio(prenotazione.alloggioId)?.nome}}</h2>
+                  <h4 class="card-text">per {{prenotazione.numeroGiorni}} giorni</h4>
+                  <h4 class="card-text">prezzo: {{prenotazione.prezzo}} euro</h4>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card-body d-flex flex-column">
+                <h4 class="card-text">Andata: {{getTrasporto(prenotazione.trasportoId)}}</h4>
+                <h4 class="card-text">Ritorno: {{getTrasporto(prenotazione.ritornoId)}}</h4>
+              </div>
+              </div>
+              <div class="col-3">
+                <div class="d-flex justify-content-center align-items-center  w-100 h-100">
+                  <button type="button" class="btn btn-success rounded" (click)="showModal(prenotazione.id)">Acquista</button>
+                </div>
+              </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-3"></div>
+
+        <div class="container">
+          <!-- Modal -->
+         <div class="modal" [id]="'exampleModal'+prenotazione.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <h5 class="modal-title" id="exampleModalLabel">Attenzione!</h5>
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                 <div class="modal-body">
+                  <p>Sicuro di voler procedere con l'acquisto?</p>
+                 </div>
+                 <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                   <button id="confirm" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="selezionaPrenotazione(prenotazione)">Conferma</button>
+                 </div>
+               </div>
+             </div>
+           </div>
+               </div>
+        </ng-container>
+      </ng-container>
+
+      <ng-template #empty>
+        <div class="col-12 d-flex flex-column align-items-center justify-content-center">
+            <h2>Nessuna prenotazione.</h2>
+        </div>
+
+      </ng-template>
+    </div>
+</div>
+
+

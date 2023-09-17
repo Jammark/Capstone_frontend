@@ -8,4 +8,5 @@ export interface Prenotazione {
   alloggioId:number;
   trasportoId:number;
   ritornoId:number;
+  prezzo:number;
 }

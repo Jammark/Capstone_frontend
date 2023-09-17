@@ -13,8 +13,11 @@
         </div>
       </div>
     </div>
+    <div class="col-12" *ngIf="alloggio">
+      <app-prenotazione-helper [nomeArrivo]="city?.nome" [alloggio]="alloggio"></app-prenotazione-helper>
+    </div>
     <div class="col-12">
-      <app-ctatalogo-alloggi [metaId]="city?.id"></app-ctatalogo-alloggi>
+      <app-ctatalogo-alloggi [metaId]="city?.id" (emit)="setAlloggio($event)"></app-ctatalogo-alloggi>
     </div>
   </div>
 

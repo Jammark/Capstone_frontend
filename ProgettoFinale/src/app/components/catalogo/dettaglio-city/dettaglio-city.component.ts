@@ -3,9 +3,10 @@ import { Città } from 'src/app/model/città';
 import { MeteService } from 'src/app/service/mete.service';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Meta } from 'src/app/model/meta';
 import { AlloggiService } from 'src/app/service/alloggi.service';
+import { Alloggio } from 'src/app/model/alloggio';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class DettaglioCityComponent implements OnInit{
 
   city?:Città;
   sub!: Subscription;
+  alloggio?:Alloggio;
 
   constructor(private srv: MeteService,  private rt: ActivatedRoute, private aSrv: AlloggiService){}
 
@@ -32,5 +34,9 @@ export class DettaglioCityComponent implements OnInit{
 
   getMetaImgUrl():string{
     return this.srv.getMetaImgUrl(this.city!);
+  }
+
+  setAlloggio(a:Alloggio):void{
+    this.alloggio = a;
   }
 }

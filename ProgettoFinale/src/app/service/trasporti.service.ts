@@ -34,6 +34,10 @@ export class TrasportiService {
     return this.http.get<Volo[]>(url.toString());
   }
 
+  getVoloById(id:number):Observable<Volo>{
+    return this.http.get<Volo>(`${environment.baseURL}trasporti/voli/${id}`)
+  }
+
   cercaTratte( partenza: string, arrivo:string, data:string):Observable<Tratta[]>{
     let url = new URL(`${environment.baseURL}trasporti/tratte/cerca`);
 

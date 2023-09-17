@@ -36,6 +36,9 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PrenotazioneHelperComponent } from './components/catalogo/prenotazione-helper/prenotazione-helper.component';
+import { SaldoComponent } from './components/saldo/saldo.component';
+import { RiepilogoComponent } from './components/riepilogo/riepilogo.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DettaglioMetaTuristicaComponent,
     MetaTuristicaComponent,
     DettaglioCityComponent,
+    PrenotazioneHelperComponent,
+    SaldoComponent,
+    RiepilogoComponent,
 
   ],
   imports: [

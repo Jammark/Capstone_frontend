@@ -1,0 +1,51 @@
+<div class="col-12">
+  <div class="row">
+    <div class="col-12">
+      <form #form="ngForm" (ngSubmit)="submit()" class="w-50">
+        <div ngModelGroup="prnt" #postGroup="ngModelGroup" id="prnt">
+          <div class="form-group py-2">
+            <label for="prt">Data partenza:</label>
+
+            <input type="date" id="prt" name="prt" min="2000-01-01" max="2025-12-31"
+            [ngModel]="partenza | date:'yyyy-MM-dd'"
+              required #prt ="ngModel"  (ngModelChange)="partenza = $event" />
+
+              <label for="rtrn">Data ritorno:</label>
+
+              <input type="date" id="rtrn" name="rtrn" min="2000-01-01" max="2025-12-31"
+              [ngModel]="ritorno | date:'yyyy-MM-dd'"
+                required #rtrn ="ngModel"  (ngModelChange)="ritorno = $event" />
+
+                <label for="nomeP"></label>
+
+                <input type="text" id="nomeP" name="nomeP" required [ngModel]="nomePartenza" #nomeP>
+
+                <button type="submit" [disabled]="form.invalid" class="btn btn-primary mt-3">Cerca voli</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-12" *ngIf="checked">
+        <app-ricerca-trasporto [data]="partenza" [partenza]="nomePartenza" [arrivo]="nomeArrivo" (emitter)="setAndata($event)"></app-ricerca-trasporto>
+    </div>
+
+    <div class="col-12" *ngIf="checked">
+      <app-ricerca-trasporto [data]="partenza" [partenza]="nomeArrivo" [arrivo]="nomePartenza" (emitter)="setRitorno($event)"></app-ricerca-trasporto>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-text">{{alloggio?.nome}}</h4>
+      </div>
+    </div>
+</div>
+  <div class="col-12" *ngIf="alloggio && viaggioAndata && viaggioRitorno">
+    <div class="d-flex w-100 flex-column align-items-end p-4">
+      <button>Prenota</button>
+    </div>
+  </div>
+  </div>
+
+
+</div>

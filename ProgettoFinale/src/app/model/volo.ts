@@ -1,3 +1,4 @@
+import { Aereoporto } from "./aereoporto";
 import { Trasporto } from "./trasporto";
 
 export interface Volo extends Trasporto{
@@ -5,4 +6,6 @@ export interface Volo extends Trasporto{
   partenzaId:number;
   arrivoId:number;
   stopId:number;
+  partenza: Aereoporto;
+  arrivo: Aereoporto;
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Alloggio } from 'src/app/model/alloggio';
 import { Città } from 'src/app/model/città';
 import { Destinazione } from 'src/app/model/destinazione';
 import { MeteService } from 'src/app/service/mete.service';
@@ -17,6 +18,7 @@ export class DettaglioMetaTuristicaComponent implements OnInit{
   dest?:Destinazione;
   sub!: Subscription;
   cities:Map<number, string>= new Map();
+  alloggio?:Alloggio;
 
   constructor(private srv: MeteService,  private rt: ActivatedRoute){}
 

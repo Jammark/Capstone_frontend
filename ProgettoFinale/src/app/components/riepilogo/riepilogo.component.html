@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row">
+    <ng-container *ngIf="this.acquisti && this.acquisti.length > 0" else empty>
+      <ng-container *ngFor="let acquisto in acquisti">
+        <div class="col-3"></div>
+      <div class="col-6">
+
+          <div class="card w-100 h-100">
+            <div class="a row no-gutters justify-content-center w-100 h-100" >
+            <div class="col-3">
+              <div class="card-header d-flex flex-column">
+                <h4 class="card-text">Prenotazione numero: {{acquisto.prenotazioneId}}</h4>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="card-body d-flex flex-column">
+                <h2 class="card-text">{{getAlloggio(acquisto.prenotazione.alloggioId)?.nome}}</h2>
+                <h4 class="card-text">per {{acquisto.prenotazione.numeroGiorni}} giorni</h4>
+                <h4 class="card-text">prezzo: {{acquisto.prenotazione.prezzo}} euro</h4>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="d-flex justify-content-center align-items-center  w-100 h-100">
+
+              </div>
+            </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-3"></div>
+
+
+      </ng-container>
+    </ng-container>
+
+    <ng-template #empty>
+      <div class="col-12 d-flex flex-column align-items-center justify-content-center">
+          <h2>Nessun ordine effettuato.</h2>
+      </div>
+
+    </ng-template>
+    <div class="col-12">
+      <div class="d-flex flex-column align-items-end justify-content-center">
+        <button class="btn btn-success" (click)="chiudi()">Chiudi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

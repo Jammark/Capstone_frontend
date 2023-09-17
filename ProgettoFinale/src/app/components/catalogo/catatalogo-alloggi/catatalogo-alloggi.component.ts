@@ -1,11 +1,11 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { Appartamento } from 'src/app/model/appartamento';
 import { Hotel } from 'src/app/model/hotel';
 import { OnInit } from '@angular/core';
 import { MeteService } from 'src/app/service/mete.service';
 import { ActivatedRoute } from '@angular/router';
 import { AlloggiService } from 'src/app/service/alloggi.service';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Alloggio } from 'src/app/model/alloggio';
 import { OnChanges } from '@angular/core';
 
@@ -21,6 +21,10 @@ export class CatatalogoAlloggiComponent implements OnInit, OnChanges{
   hotels?:Hotel[];
   appartamenti?:Appartamento[];
   sub?:Subscription;
+
+  private alloggioSubj = new BehaviorSubject<null | Alloggio>(null);
+  @Output() emit = new EventEmitter<Alloggio>();
+  alloggio$ = this.alloggioSubj.asObservable();
 
   constructor(private srv: MeteService,  private rt: ActivatedRoute, private aSrv: AlloggiService){}
 
@@ -45,15 +49,17 @@ export class CatatalogoAlloggiComponent implements OnInit, OnChanges{
   }
 
   ngOnInit(): void {
-
+    this.alloggioSubj.subscribe(a => {
+      this.emit.emit(a ? a : undefined);
+  })
   }
 
   selezionaHotel(h:Hotel){
-
+    this.alloggioSubj.next(h);
   }
 
   selezionaAppartamento(a:Appartamento){
-
+    this.alloggioSubj.next(a);
   }
 
   getAlloggioImgUrl(a:Alloggio):string{
