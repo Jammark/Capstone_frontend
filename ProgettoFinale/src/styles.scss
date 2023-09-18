@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-html, body, app-root{
+html, body, app-root, main{
   height: 100%;
   padding: 0;
   margin: 0;
@@ -13,5 +13,5 @@ html, body, app-root{
 @import '@fortawesome/fontawesome-free/scss/solid.scss';
 @import '@fortawesome/fontawesome-free/scss/regular.scss';
 @import '@fortawesome/fontawesome-free/scss/brands.scss';
- 
+
 @import 'mdb-angular-ui-kit/assets/scss/mdb.scss';

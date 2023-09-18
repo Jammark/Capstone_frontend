@@ -56,7 +56,7 @@ export class SaldoComponent implements OnInit{
   }
 
   selezionaPrenotazione(p:Prenotazione):void{
-      this.srv.prenota(p).subscribe(item => {
+      this.srv.acquista(p).subscribe(item => {
         this.router.navigate(['riepilogo']);
       })
   }

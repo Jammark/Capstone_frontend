@@ -1,15 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import * as bootstrap from 'bootstrap';
 import { Alloggio } from 'src/app/model/alloggio';
 import { Prenotazione } from 'src/app/model/prenotazione';
 import { Trasporto } from 'src/app/model/trasporto';
 import { PrenotazioniService } from 'src/app/service/prenotazioni.service';
+import { DateUtil } from 'src/app/util/date-util';
 
 @Component({
   selector: 'app-prenotazione-helper',
   templateUrl: './prenotazione-helper.component.html',
   styleUrls: ['./prenotazione-helper.component.scss']
 })
-export class PrenotazioneHelperComponent {
+export class PrenotazioneHelperComponent implements OnInit{
 
   prenotazione?:Prenotazione;
   @Input()
@@ -23,7 +26,11 @@ export class PrenotazioneHelperComponent {
   viaggioAndata?:Trasporto;
   viaggioRitorno?:Trasporto;
 
-  constructor(private srv: PrenotazioniService){}
+  constructor(private srv: PrenotazioniService, private router: Router){}
+
+  ngOnInit(): void {
+
+  }
 
   submit():void{
       this.checked = true;
@@ -35,5 +42,51 @@ export class PrenotazioneHelperComponent {
 
   setRitorno(t:Trasporto):void{
     this.viaggioRitorno = t;
+  }
+
+  rimuoviAndata():void{
+    this.viaggioAndata = undefined;
+  }
+
+  rimuoviRitorno():void{
+    this.viaggioRitorno = undefined;
+  }
+
+  prenota():void{
+      let prenotazione:Prenotazione = {
+        data: DateUtil.formatDate(this.partenza!),
+        dataFine: DateUtil.formatDate(this.ritorno!),
+        metaId: this.alloggio!.metaId,
+        alloggioId: this.alloggio!.id,
+        trasportoId: this.viaggioAndata!.id,
+        ritornoId: this.viaggioRitorno!.id,
+        id: undefined,
+        numeroGiorni: undefined,
+        userId: undefined,
+        prezzo: undefined
+      };
+
+      this.srv.prenota(prenotazione).subscribe(item => {
+        console.table(item);
+        this.showModalFinish();
+      })
+  };
+
+  showModal(id:string){
+
+    var myModal = new bootstrap.Modal(document.getElementById(`exampleModal${id}`) as HTMLElement);
+    myModal.show();
+
+  }
+
+  showModalFinish(){
+
+    var myModal = new bootstrap.Modal(document.getElementById(`modalSuccess`) as HTMLElement);
+    myModal.show();
+
+  }
+
+  chiudi():void{
+      this.router.navigate(['/home']);
   }
 }

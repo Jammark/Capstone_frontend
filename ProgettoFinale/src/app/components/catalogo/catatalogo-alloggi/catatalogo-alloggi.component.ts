@@ -18,6 +18,8 @@ export class CatatalogoAlloggiComponent implements OnInit, OnChanges{
 
   @Input()
   metaId?:number;
+  @Input()
+  metaIds?:number[];
   hotels?:Hotel[];
   appartamenti?:Appartamento[];
   sub?:Subscription;
@@ -45,6 +47,26 @@ export class CatatalogoAlloggiComponent implements OnInit, OnChanges{
           console.table(this.appartamenti);
         });
     }
+    }
+
+    if(changes['metaIds']){
+      this.hotels = [];
+      this.appartamenti = [];
+      this.metaIds?.forEach(id => {
+        this.aSrv.getHotelsByMeta(id).subscribe(lista => {
+          lista.forEach(e => this.hotels?.push(e))
+          console.log('lista hotel length: '+ this.hotels!.length);
+
+
+        });
+
+        this.aSrv.getAppartamentiByMeta(id).subscribe(lista => {
+          lista.forEach(e => this.appartamenti?.push(e));
+
+          console.log('lista appartamenti length: '+ lista.length);
+          console.table(this.appartamenti);
+        });
+      });
     }
   }
 

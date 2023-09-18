@@ -1,34 +1,41 @@
-<div class="container-fluid  w-100 h-100 p-0">
-    <div class="row h-100">
+<div class="container-fluid  w-100 h-100 p-4 my-2">
+    <div class="row h-100 gy-2">
+      <div class="col-12">
+        <div class="d-flex w-100 justify-content-center">
+          <h1>Saldo prenotazioni</h1>
+        </div>
+      </div>
       <ng-container *ngIf="this.prenotazioni && this.prenotazioni.length > 0" else empty>
         <ng-container *ngFor="let prenotazione of prenotazioni">
-          <div class="col-3"></div>
-        <div class="col-6">
+          <div class="col-2"></div>
+        <div class="col-8">
 
             <div class="card w-100 h-100">
               <div class="a row no-gutters justify-content-center w-100 h-100" >
-              <div class="col-3">
+              <div class="col-4">
                 <div class="card-header d-flex flex-column">
                   <h2 class="card-text">{{getAlloggio(prenotazione.alloggioId)?.nome}}</h2>
                   <h4 class="card-text">per {{prenotazione.numeroGiorni}} giorni</h4>
                   <h4 class="card-text">prezzo: {{prenotazione.prezzo}} euro</h4>
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-4">
                 <div class="card-body d-flex flex-column">
-                <h4 class="card-text">Andata: {{getTrasporto(prenotazione.trasportoId)}}</h4>
-                <h4 class="card-text">Ritorno: {{getTrasporto(prenotazione.ritornoId)}}</h4>
+
+                <h4 class="card-text">Andata: {{getTrasporto(prenotazione.trasportoId)?.nome}}, {{getTrasporto(prenotazione.trasportoId)?.dataPartenza}}</h4>
+
+                <h4 class="card-text">Ritorno: {{getTrasporto(prenotazione.ritornoId)?.nome}}, {{getTrasporto(prenotazione.ritornoId)?.dataPartenza}}</h4>
               </div>
               </div>
-              <div class="col-3">
-                <div class="d-flex justify-content-center align-items-center  w-100 h-100">
-                  <button type="button" class="btn btn-success rounded" (click)="showModal(prenotazione.id)">Acquista</button>
+              <div class="col-2">
+                <div class="d-flex justify-content-center align-items-center  w-100 h-100" *ngIf="prenotazione.id">
+                  <button type="button" class="btn btn-success rounded" (click)="showModal(prenotazione.id!)">Acquista</button>
                 </div>
               </div>
               </div>
           </div>
         </div>
-        <div class="col-3"></div>
+        <div class="col-2"></div>
 
         <div class="container">
           <!-- Modal -->

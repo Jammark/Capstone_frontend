@@ -67,7 +67,7 @@ import { RiepilogoComponent } from './components/riepilogo/riepilogo.component';
     MdbAccordionModule,
     MdbCarouselModule,
     MdbCheckboxModule,
- //   MdbCollapseModule,
+    MdbCollapseModule,
     MdbDropdownModule,
     MdbFormsModule,
     MdbModalModule,

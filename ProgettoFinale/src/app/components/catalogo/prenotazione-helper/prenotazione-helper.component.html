@@ -1,51 +1,111 @@
 <div class="col-12">
   <div class="row">
     <div class="col-12">
-      <form #form="ngForm" (ngSubmit)="submit()" class="w-50">
-        <div ngModelGroup="prnt" #postGroup="ngModelGroup" id="prnt">
-          <div class="form-group py-2">
+      <form #form="ngForm" (ngSubmit)="submit()" class="w-100">
+        <div ngModelGroup="prnt" #prntGroup="ngModelGroup" id="prnt">
+          <div class="py-2 d-flex justify-content-around w-100">
+            <div class="form-group py-2 d-flex flex-column align-items-center">
             <label for="prt">Data partenza:</label>
 
             <input type="date" id="prt" name="prt" min="2000-01-01" max="2025-12-31"
             [ngModel]="partenza | date:'yyyy-MM-dd'"
               required #prt ="ngModel"  (ngModelChange)="partenza = $event" />
-
+            </div>
+            <div class="form-group py-2 d-flex flex-column align-items-center">
               <label for="rtrn">Data ritorno:</label>
 
               <input type="date" id="rtrn" name="rtrn" min="2000-01-01" max="2025-12-31"
               [ngModel]="ritorno | date:'yyyy-MM-dd'"
                 required #rtrn ="ngModel"  (ngModelChange)="ritorno = $event" />
+          </div>
+          <div class="form-group py-2 d-flex flex-column align-items-center">
+                <label for="nomeP">Nome città partenza</label>
 
-                <label for="nomeP"></label>
-
-                <input type="text" id="nomeP" name="nomeP" required [ngModel]="nomePartenza" #nomeP>
-
+                <input type="text" id="nomeP" name="nomeP" required [(ngModel)]="nomePartenza" #nomeP>
+        </div>
                 <button type="submit" [disabled]="form.invalid" class="btn btn-primary mt-3">Cerca voli</button>
           </div>
         </div>
       </form>
     </div>
 
-    <div class="col-12" *ngIf="checked">
-        <app-ricerca-trasporto [data]="partenza" [partenza]="nomePartenza" [arrivo]="nomeArrivo" (emitter)="setAndata($event)"></app-ricerca-trasporto>
+    <div class="col-12 my-4" *ngIf="checked">
+        <app-ricerca-trasporto [titolo]="'Voli andata'" [data]="partenza" [partenza]="nomePartenza" [arrivo]="nomeArrivo" (emitter)="setAndata($event)"></app-ricerca-trasporto>
     </div>
 
-    <div class="col-12" *ngIf="checked">
-      <app-ricerca-trasporto [data]="partenza" [partenza]="nomeArrivo" [arrivo]="nomePartenza" (emitter)="setRitorno($event)"></app-ricerca-trasporto>
+    <div class="col-12 my-4" *ngIf="checked">
+      <app-ricerca-trasporto [titolo]="'Voli ritorno'" [data]="ritorno" [partenza]="nomeArrivo" [arrivo]="nomePartenza" (emitter)="setRitorno($event)"></app-ricerca-trasporto>
   </div>
-  <div class="col-12">
-    <div class="card">
+  <div class="col-12 my-4">
+    <div class="card p-3">
+      <div class="row no-gutters">
+        <div class="col-8">
       <div class="card-header">
-        <h4 class="card-text">{{alloggio?.nome}}</h4>
+        <h4 class="card-text my-2 mx-3">Alloggio: {{alloggio?.nome}}</h4>
+        <div class="d-flex align-items-center w-100 my-2" *ngIf="viaggioAndata">
+          <h4 class="card-text mx-3">Andata: {{viaggioAndata.nome}}</h4>
+          <button class="btn btn-danger mx-3" (click)="rimuoviAndata()">Rimuovi</button>
+        </div>
+        <div class="d-flex align-items-center w-100 my-2" *ngIf="viaggioRitorno">
+          <h4 class="card-text mx-3">Ritorno: {{viaggioRitorno.nome}}</h4>
+          <button class="btn btn-danger mx-3" (click)="rimuoviRitorno()">Rimuovi</button>
+        </div>
       </div>
+      </div>
+      <div class="col-4">
+        <div class="d-flex w-100 flex-column align-items-end justify-content-center p-4 h-100">
+          <button class="btn btn-primary" (click)="showModal('p')">Prenota</button>
+        </div>
+      </div>
+    </div>
     </div>
 </div>
   <div class="col-12" *ngIf="alloggio && viaggioAndata && viaggioRitorno">
-    <div class="d-flex w-100 flex-column align-items-end p-4">
-      <button>Prenota</button>
-    </div>
+
   </div>
   </div>
 
 
 </div>
+
+<div class="container">
+  <!-- Modal -->
+ <div class="modal" [id]="'exampleModal'+'p'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel">Attenzione!</h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+          <p>Sicuro di voler procedere con la prenotazione?</p>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+           <button id="confirm" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="prenota()">Conferma</button>
+         </div>
+       </div>
+     </div>
+   </div>
+       </div>
+
+       <div class="container">
+        <!-- Modal -->
+       <div class="modal" id="modalSuccess" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">Complimenti!</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                <p>Prenotazione avvenuta con successo.</p>
+               </div>
+               <div class="modal-footer">
+
+                 <button id="confirm" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="chiudi()">Ok</button>
+               </div>
+             </div>
+           </div>
+         </div>
+             </div>

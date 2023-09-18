@@ -20,6 +20,9 @@ export class RicercaTrasportoComponent implements OnInit,OnChanges{
   @Input()
   arrivo?:string;
 
+  @Input()
+  titolo?:string;
+
   voli?:Volo[];
 
   private voloSubj = new BehaviorSubject<null | Volo>(null);
@@ -36,9 +39,13 @@ export class RicercaTrasportoComponent implements OnInit,OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.table(this.data);
+    console.table(this.partenza);
+    console.table(this.arrivo);
     if(this.data && this.partenza && this.arrivo){
       this.srv.cercaVoli(this.partenza, this.arrivo, DateUtil.formatDate(this.data)).subscribe(val =>{
           this.voli = val;
+          console.table(val);
       })
     }
   }

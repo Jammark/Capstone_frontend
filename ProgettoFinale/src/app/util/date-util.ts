@@ -6,6 +6,7 @@ let joined = DateUtil.join(data, options, '-');
     return joined;
   }
 
+
   static formatDate(date:Date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),

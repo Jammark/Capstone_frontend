@@ -19,6 +19,7 @@ export class DettaglioMetaTuristicaComponent implements OnInit{
   sub!: Subscription;
   cities:Map<number, string>= new Map();
   alloggio?:Alloggio;
+  city?:Città;
 
   constructor(private srv: MeteService,  private rt: ActivatedRoute){}
 
@@ -39,5 +40,16 @@ export class DettaglioMetaTuristicaComponent implements OnInit{
 
   getMetaImgUrl():string{
     return this.srv.getMetaImgUrl(this.dest!);
+  }
+
+  setAlloggio(a:Alloggio):void{
+    this.alloggio = a;
+    this.getCity();
+  }
+
+  getCity():void{
+     this.srv.getCittàById(this.alloggio!.metaId).subscribe(item => {
+      this.city = item;
+     });
   }
 }

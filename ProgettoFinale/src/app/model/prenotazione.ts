@@ -1,12 +1,13 @@
 export interface Prenotazione {
 
-  id:number;
+  id:number | undefined;
   data:string;
-  numeroGiorni:number;
+  dataFine:string;
+  numeroGiorni:number | undefined;
   metaId:number;
-  userId:number;
+  userId:number | undefined;
   alloggioId:number;
   trasportoId:number;
   ritornoId:number;
-  prezzo:number;
+  prezzo:number | undefined;
 }
