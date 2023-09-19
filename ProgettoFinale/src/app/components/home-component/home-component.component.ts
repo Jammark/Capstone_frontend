@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit{
         });
     });
 
-    let h = document.getElementById('c')!.offsetHeight;
+    let h = window.innerHeight;//document.getElementById('c')!.offsetHeight;
 //    window.onload = () => {
     document.addEventListener("scroll", (event) => {
       let lastKnownScrollPosition = window.scrollY;

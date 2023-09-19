@@ -39,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrenotazioneHelperComponent } from './components/catalogo/prenotazione-helper/prenotazione-helper.component';
 import { SaldoComponent } from './components/saldo/saldo.component';
 import { RiepilogoComponent } from './components/riepilogo/riepilogo.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { RiepilogoComponent } from './components/riepilogo/riepilogo.component';
     PrenotazioneHelperComponent,
     SaldoComponent,
     RiepilogoComponent,
+    FooterComponent,
 
   ],
   imports: [

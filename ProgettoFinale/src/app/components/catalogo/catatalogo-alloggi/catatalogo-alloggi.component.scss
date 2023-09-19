@@ -2,4 +2,30 @@
     font-size: 1.4rem;
 }
 
+.off {
 
+  content: url('../../../../assets/imgs/star2.svg');
+
+}
+
+.on{
+content: url('../../../../assets/imgs/star.svg');
+}
+.modal{
+  .star{
+    cursor: pointer;
+  }
+}
+
+.card{
+  ul{
+    cursor: pointer;
+  }
+}
+.star{
+  height: 25px;
+  width: 25px;
+
+
+
+}

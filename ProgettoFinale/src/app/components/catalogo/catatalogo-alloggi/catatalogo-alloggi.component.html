@@ -6,7 +6,7 @@
 
     <div class="col-12">
 
-      <mdb-tabs>
+      <mdb-tabs (activeTabChange)="setupRating()">
         <mdb-tab title="Hotels">
   <div class="col-12 container-fluid w-100 h-100 p-2">
 
@@ -26,6 +26,13 @@
           <div class="col-6">
             <div class="card-body flex-column z-1 align-items-start p-0 w-50 h-100 w-100">
                 <h2 class="card-title p-2 rounded bg-white text-primary">{{hotel.nome}}</h2>
+                <ul [id]="'rateContainer'+hotel.id" class="list-unstyled d-flex align-items-center justify-content-start" (click)="showModalVoto(hotel.id)">
+                  <ng-container *ngFor="let i of [0,1,2,3,4]">
+                    <li>
+                      <img class="star">
+                    </li>
+                  </ng-container>
+                </ul>
             </div>
           </div>
           <div class="col-3">
@@ -36,6 +43,34 @@
           </div>
         </div>
       </div>
+
+      <div class="container">
+        <!-- Modal -->
+       <div class="modal" [id]="'exampleModal'+hotel.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">Vota Hotel!</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                <p>Dai un voto da 1 a 5.</p>
+                <ul [id]="'rateModal'+hotel.id" class="list-unstyled d-flex align-items-center justify-content-start" >
+                  <ng-container *ngFor="let i of [0,1,2,3,4]">
+                    <li>
+                      <img class="star">
+                    </li>
+                  </ng-container>
+                </ul>
+               </div>
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                 <button id="confirm" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="vota(hotel.id)">Vota</button>
+               </div>
+             </div>
+           </div>
+         </div>
+             </div>
       </ng-container>
     </div>
       </ng-container>
@@ -57,7 +92,13 @@
           <div class="col-6">
             <div class="card-body flex-column z-1 align-items-start p-0  w-100 h-100">
                 <h2 class="card-title p-2 rounded bg-white text-primary">{{apprt.nome}}</h2>
-            </div>
+                <ul [id]="'rateContainer'+apprt.id" class="list-unstyled d-flex align-items-center justify-content-start" (click)="showModalVoto(apprt.id)">
+                  <ng-container *ngFor="let i of [0,1,2,3,4]">
+                    <li>
+                      <img class="star">
+                    </li>
+                  </ng-container>
+                </ul> </div>
         </div>
         <div class="col-3">
         <div class="d-flex justify-content-center align-items-center  w-100 h-100">
@@ -66,7 +107,33 @@
       </div>
           </div>
         </div>
-
+        <div class="container">
+          <!-- Modal -->
+         <div class="modal" [id]="'exampleModal'+apprt.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <h5 class="modal-title" id="exampleModalLabel">Vota Appartamento!</h5>
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                 <div class="modal-body">
+                  <p>Dai un voto da 1 a 5.</p>
+                  <ul [id]="'rateModal'+apprt.id" class="list-unstyled d-flex align-items-center justify-content-start">
+                    <ng-container *ngFor="let i of [0,1,2,3,4]">
+                      <li>
+                        <img class="star">
+                      </li>
+                    </ng-container>
+                  </ul>
+                 </div>
+                 <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                   <button id="confirm" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="vota(apprt.id)">Vota</button>
+                 </div>
+               </div>
+             </div>
+           </div>
+               </div>
       </ng-container>
     </div>
       </ng-container>

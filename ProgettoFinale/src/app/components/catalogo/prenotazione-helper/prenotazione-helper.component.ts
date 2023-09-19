@@ -4,6 +4,7 @@ import * as bootstrap from 'bootstrap';
 import { Alloggio } from 'src/app/model/alloggio';
 import { Prenotazione } from 'src/app/model/prenotazione';
 import { Trasporto } from 'src/app/model/trasporto';
+import { MeteService } from 'src/app/service/mete.service';
 import { PrenotazioniService } from 'src/app/service/prenotazioni.service';
 import { DateUtil } from 'src/app/util/date-util';
 
@@ -25,11 +26,12 @@ export class PrenotazioneHelperComponent implements OnInit{
   checked:boolean = false;
   viaggioAndata?:Trasporto;
   viaggioRitorno?:Trasporto;
+  cityNames:string[]=[];
 
-  constructor(private srv: PrenotazioniService, private router: Router){}
+  constructor(private mSrv: MeteService,private srv: PrenotazioniService, private router: Router){}
 
   ngOnInit(): void {
-
+      this.getNomiCittà();
   }
 
   submit():void{
@@ -84,6 +86,12 @@ export class PrenotazioneHelperComponent implements OnInit{
     var myModal = new bootstrap.Modal(document.getElementById(`modalSuccess`) as HTMLElement);
     myModal.show();
 
+  }
+
+  getNomiCittà():void{
+    this.mSrv.getCittà().subscribe(lista => {
+      this.cityNames = lista.map(e => e.nome);
+    });
   }
 
   chiudi():void{
