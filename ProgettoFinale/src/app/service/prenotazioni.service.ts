@@ -26,6 +26,10 @@ export class PrenotazioniService {
 
   }
 
+  getPacchetti(id:number):Observable<Prenotazione[]>{
+    return this.http.get<Prenotazione[]>(`${environment.baseURL}prenotazioni/${id}`);
+  }
+
   prenota(payload: Prenotazione):Observable<Prenotazione>{
     return this.http.post<Prenotazione>(`${environment.baseURL}prenotazioni`, payload);
   }

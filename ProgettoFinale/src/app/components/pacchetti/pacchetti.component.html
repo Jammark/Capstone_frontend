@@ -1,0 +1,69 @@
+<div class="d-flex flex-column w-100 position-relative py-5">
+  <button id="close" class="position-absolute top-0 end-0 mx-1 my-2 shadow-none" style="background-color:transparent" (click)="close()"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#37517e" class="bi bi-x-square" viewBox="0 0 16 16">
+    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+  </svg></span></button>
+<div class="container-fluid w-100 p-2 my-4">
+
+  <ng-container *ngIf="this.pacchetti && this.pacchetti.length > 0 else empty"
+    >
+    <div class="row px-0 py-0 ts">
+    <ng-container *ngFor="let pacchetto of pacchetti; let i = index">
+
+      <div class="col-12" >
+        <div class="card w-100 h-100 py-3">
+        <div class="row no-gutters justify-content-center w-100 h-100" >
+          <div class="col-3 d-flex flex-column align-items-center" *ngIf="getAlloggio(pacchetto)">
+          <object class="w-50" data="../../../../assets/imgs/alloggio1.jpg" type="image/jpg">
+          <img class="card-img-top img-fluid z-1 h-100" [src]="getAlloggioImgUrl(getAlloggio(pacchetto)!)" alt="Card image cap" >
+          </object>
+          <h4 class="card-text">{{getAlloggio(pacchetto)?.nome}}</h4>
+        </div>
+        <div class="col-6">
+          <div class="card-body flex-column z-1 align-items-start p-0 w-50 h-100 w-100">
+              <h2 class="card-title p-2 rounded bg-white text-primary">Voli</h2>
+              <h4 class="card-text">Andata: {{getAndata(pacchetto)?.nome}} - {{getAndata(pacchetto)?.dataPartenza}}</h4>
+              <h4 class="card-text">Ritorno: {{getRitorno(pacchetto)?.nome}} - {{getRitorno(pacchetto)?.dataPartenza}}</h4>
+          </div>
+        </div>
+        <div class="col-3">
+        <div class="card-footer d-flex justify-content-center align-items-center w-100 h-100">
+          <button type="button" class="btn btn-success rounded" (click)="showModal(i)">Prenota</button>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Modal -->
+     <div class="modal" [id]="'exampleModal'+i" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Attenzione!</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+              <p>Vuoi procedere con l'aquisto del pacchetto?</p>
+
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+               <button id="confirm" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="selezionaPacchetto(pacchetto)">Procedi</button>
+             </div>
+           </div>
+         </div>
+       </div>
+           </div>
+    </ng-container>
+  </div>
+    </ng-container>
+
+    <ng-template #empty>
+      <div class="d-flex align-items-center justify-content-center">
+        <h4>Nessun Risultato</h4>
+      </div>
+    </ng-template>
+</div>
+</div>

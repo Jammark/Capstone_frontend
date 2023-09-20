@@ -41,6 +41,7 @@ import { SaldoComponent } from './components/saldo/saldo.component';
 import { RiepilogoComponent } from './components/riepilogo/riepilogo.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
+import { PacchettiComponent } from './components/pacchetti/pacchetti.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { HeroComponent } from './components/hero/hero.component';
     RiepilogoComponent,
     FooterComponent,
     HeroComponent,
+    PacchettiComponent,
 
   ],
   imports: [

@@ -1,8 +1,11 @@
 
-
+.card{
+  position: relative;
+}
 .card-body{
   height: 700px;
   background-color: white;
+
 }
 
 .card-footer{
@@ -17,14 +20,15 @@
 
 .card-header{
   background-color: rgba(250, 250, 250, 0.7);
-  top: 20px;
+  top: 170px;
   left: 30px;
+  z-index: 1;
 }
 
 .card-text{
-  font-family: adobe-caslon-pro,sans-serif;
+  font-family: archetype, serif;
   font-size: 21px;
-  font-style: normal;
+  font-style: italic;
   font-weight: 400;
   text-transform: none;
   line-height: 1.6;

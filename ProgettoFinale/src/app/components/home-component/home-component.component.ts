@@ -5,6 +5,8 @@ import { OnInit } from '@angular/core';
 import { Città } from 'src/app/model/città';
 import { Destinazione } from 'src/app/model/destinazione';
 import { Router } from '@angular/router';
+import { AuthData } from '../auth/auth-data.interface';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home-component',
@@ -18,8 +20,10 @@ export class HomeComponent implements OnInit{
   destinazioni?: Destinazione[];
   scroll:Map<number, boolean> = new Map();
   scroll2:Map<number, boolean> = new Map();
+  user!: AuthData | null;
+  checks:Map<number, boolean>= new Map();
 
-  constructor(private srv: MeteService, private router: Router){}
+  constructor(private authSrv: AuthService,private srv: MeteService, private router: Router){}
 
   ngOnInit(): void {
     this.srv.getMostRatedCities().subscribe(città => {
@@ -29,9 +33,15 @@ export class HomeComponent implements OnInit{
           this.destinazioni = dests;
           this.mete = this.mete.concat(this.destinazioni).concat(this.città!).sort((a,b) => a.nome < b.nome? -1 : 1);
           document.getElementById('r')!.style.backgroundImage=`url(${this.getMetaImgUrl(this.mete[0])}`;
-
+          this.mete.forEach(m => this.checks.set(m.id, false));
         });
     });
+
+    this.authSrv.user$.subscribe((_user) => {
+      this.user = _user;
+
+
+  });
 
     let h = window.innerHeight;//document.getElementById('c')!.offsetHeight;
 //    window.onload = () => {
@@ -82,6 +92,10 @@ export class HomeComponent implements OnInit{
 
   getMetaImgUrl(meta:Meta):string{
     return this.srv.getMetaImgUrl(meta);
+  }
+
+  mostraPacchetti(m:Meta):void{
+    this.checks.set(m.id, true);
   }
 
   selectMeta(m:Meta):void{
