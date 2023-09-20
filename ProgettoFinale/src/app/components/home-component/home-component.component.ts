@@ -4,6 +4,7 @@ import { MeteService } from 'src/app/service/mete.service';
 import { OnInit } from '@angular/core';
 import { Città } from 'src/app/model/città';
 import { Destinazione } from 'src/app/model/destinazione';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-component',
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit{
   scroll:Map<number, boolean> = new Map();
   scroll2:Map<number, boolean> = new Map();
 
-  constructor(private srv: MeteService){}
+  constructor(private srv: MeteService, private router: Router){}
 
   ngOnInit(): void {
     this.srv.getMostRatedCities().subscribe(città => {
@@ -81,6 +82,15 @@ export class HomeComponent implements OnInit{
 
   getMetaImgUrl(meta:Meta):string{
     return this.srv.getMetaImgUrl(meta);
+  }
+
+  selectMeta(m:Meta):void{
+    if(this.città?.find(e => e.id == m.id)){
+      this.router.navigate([`/meta/citta/${m.id}`]);
+    }else if(this.destinazioni?.find(e => e.id == m.id)){
+      this.router.navigate([`/meta/dest/${m.id}`]);
+    }
+
   }
 
 }

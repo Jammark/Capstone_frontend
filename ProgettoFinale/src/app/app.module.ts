@@ -40,6 +40,7 @@ import { PrenotazioneHelperComponent } from './components/catalogo/prenotazione-
 import { SaldoComponent } from './components/saldo/saldo.component';
 import { RiepilogoComponent } from './components/riepilogo/riepilogo.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HeroComponent } from './components/hero/hero.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { FooterComponent } from './components/footer/footer.component';
     SaldoComponent,
     RiepilogoComponent,
     FooterComponent,
+    HeroComponent,
 
   ],
   imports: [

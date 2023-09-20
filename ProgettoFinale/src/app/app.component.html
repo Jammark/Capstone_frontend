@@ -1,5 +1,7 @@
 
 <app-nav *ngIf="!switch" ></app-nav>
+  <!-- ======= Hero Section ======= -->
+ <app-hero *ngIf="!switch"></app-hero>
 <router-outlet></router-outlet>
-<app-footer class="mt-auto"></app-footer>
+<app-footer class="mt-auto" *ngIf="!switch"></app-footer>
 
