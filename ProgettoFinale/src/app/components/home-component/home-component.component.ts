@@ -63,6 +63,12 @@ export class HomeComponent implements OnInit{
         //  array[index+1].getElementsByClassName('card-img-top')[0].classList.toggle('sticky-top');
         //  document.getElementById('topBar')!.classList.toggle('white');
       }
+
+      if(val && lastKnownScrollPosition + h < target!.offsetTop + target!.offsetHeight){
+        let header = target.getElementsByClassName('card-header')[0] as HTMLImageElement;
+        let msr = (lastKnownScrollPosition - target!.offsetTop) / target!.offsetHeight - 0.5;
+        header.style.opacity = `${1- 2*Math.abs(msr)}`;
+      }
     });
   });
 

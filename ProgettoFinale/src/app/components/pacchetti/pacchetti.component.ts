@@ -65,8 +65,9 @@ getAlloggioImgUrl(a:Alloggio):string{
 }
 
 showModal(id:number){
-  var myModal = new bootstrap.Modal(document.getElementById(`exampleModal`+id) as HTMLElement);
-  myModal.show();
+  $('#modalPush'+id).appendTo("body").modal('show');
+  //var myModal = new bootstrap.Modal(document.getElementById(`exampleModal`+id) as HTMLElement);
+  //myModal.show();
 }
 
 selezionaPacchetto(p:Prenotazione):void{

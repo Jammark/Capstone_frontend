@@ -10,9 +10,72 @@ html, body, app-root{
   font-family: 'Kanit', sans-serif;
 
  }
+
+/*modal warning*/
+.modal-dialog.modal-notify.modal-success .modal-header{
+  background-color: #198754;
+  p{
+    color: white;
+  }
+ }
+
+
+ .modal-dialog.modal-notify.modal-success .fas{
+  color: #198754;
+ }
+
+ /*modal warning*/
+ .modal-dialog.modal-notify.modal-warn .modal-header{
+  background-color: #e5be33;
+  p{
+    color: white;
+  }
+ }
+
+ .modal-dialog.modal-notify.modal-warn .modal-footer{
+  .btn-warn{
+    background-color: #e5be33 !important;
+  }
+  .btn-outline-warn{
+    color: #e5be33 !important;
+  background-color: transparent !important;
+  border: 2px solid #e5be33 !important;
+  }
+ }
+
+ .modal-dialog.modal-notify.modal-warn .fas{
+  color: #e5be33;
+ }
+/*modal info*/
+ .modal-dialog.modal-notify.modal-info .modal-header{
+  background-color: #33b5e5;
+  p{
+    color: white;
+  }
+ }
+
+ .modal-dialog.modal-notify.modal-info .modal-footer{
+  .btn-info{
+    background-color: #33b5e5 !important;
+  }
+  .btn-outline-info{
+    color: #33b5e5 !important;
+  background-color: transparent !important;
+  border: 2px solid #33b5e5 !important;
+  }
+ }
+
+ .modal-dialog.modal-notify.modal-info .fas{
+  color: #33b5e5;
+ }
+
 @import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '@fortawesome/fontawesome-free/scss/solid.scss';
 @import '@fortawesome/fontawesome-free/scss/regular.scss';
 @import '@fortawesome/fontawesome-free/scss/brands.scss';
 
 @import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
+
+
+
+

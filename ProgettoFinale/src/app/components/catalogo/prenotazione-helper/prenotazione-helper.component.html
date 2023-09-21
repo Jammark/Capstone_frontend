@@ -4,21 +4,21 @@
       <form #form="ngForm" (ngSubmit)="submit()" class="w-100">
         <div ngModelGroup="prnt" #prntGroup="ngModelGroup" id="prnt">
           <div class="py-2 d-flex justify-content-around w-100">
-            <div class="form-group py-2 d-flex flex-column align-items-center">
+            <div class="form-group p-2 d-flex flex-column align-items-center flex-fill">
             <label for="prt">Data partenza:</label>
 
-            <input type="date" id="prt" name="prt" min="2000-01-01" max="2025-12-31"
+            <input type="date" id="prt" name="prt" min="2000-01-01" max="2025-12-31" class="w-100 h-100"
             [ngModel]="partenza | date:'yyyy-MM-dd'"
               required #prt ="ngModel"  (ngModelChange)="partenza = $event" />
             </div>
-            <div class="form-group py-2 d-flex flex-column align-items-center">
+            <div class="form-group p-2 d-flex flex-column align-items-center flex-fill">
               <label for="rtrn">Data ritorno:</label>
 
-              <input type="date" id="rtrn" name="rtrn" min="2000-01-01" max="2025-12-31"
+              <input type="date" id="rtrn" name="rtrn" min="2000-01-01" max="2025-12-31" class="w-100 h-100"
               [ngModel]="ritorno | date:'yyyy-MM-dd'"
                 required #rtrn ="ngModel"  (ngModelChange)="ritorno = $event" />
           </div>
-          <div class="form-group py-2 d-flex flex-column align-items-center">
+          <div class="form-group p-2 d-flex flex-column align-items-center flex-fill">
                 <label for="nomeP">Nome città partenza</label>
 
                 <select id="nomeP" class="form-select"
@@ -32,10 +32,16 @@
                 <input type="text" id="nomeP" name="nomeP" required [(ngModel)]="nomePartenza" #nomeP>
        -->
               </div>
+              <div class="flex-fill d-flex align-items-center justify-content-center">
                 <button type="submit" [disabled]="form.invalid" class="btn btn-primary mt-3">Cerca voli</button>
-          </div>
+              </div>
+              </div>
         </div>
       </form>
+    </div>
+
+    <div class="col-12 section-title d-flex align-items-center justify-content-center w-100">
+      <h2></h2>
     </div>
 
     <div class="col-12 my-4" *ngIf="checked">
@@ -63,11 +69,14 @@
       </div>
       <div class="col-7">
         <div class="d-flex w-100 flex-column align-items-end justify-content-center p-4 h-100">
-          <button class="btn btn-primary" (click)="showModal('p')">Prenota</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Prenota</button><!--(click)="showModal('p')"-->
         </div>
       </div>
     </div>
     </div>
+</div>
+<div class="col-12 section-title d-flex align-items-center justify-content-center w-100">
+  <h2></h2>
 </div>
   <div class="col-12" *ngIf="alloggio && viaggioAndata && viaggioRitorno">
 
@@ -90,7 +99,7 @@
           <p>Sicuro di voler procedere con la prenotazione?</p>
          </div>
          <div class="modal-footer">
-           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
            <button id="confirm" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="prenota()">Conferma</button>
          </div>
        </div>
@@ -98,9 +107,40 @@
    </div>
        </div>
 
+       <!--Modal: modalPush-->
+<div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-notify modal-info" role="document">
+  <!--Content-->
+  <div class="modal-content text-center">
+    <!--Header-->
+    <div class="modal-header d-flex justify-content-center">
+      <p class="heading">Attenzione!</p>
+    </div>
+
+    <!--Body-->
+    <div class="modal-body">
+
+      <i class="fas fa-bell fa-4x animated rotateIn mb-4"></i>
+
+      <p>Sicuro di voler procedere con la prenotazione?</p>
+
+    </div>
+
+    <!--Footer-->
+    <div class="modal-footer flex-center">
+      <a  class="btn btn-info" (click)="prenota()" data-dismiss="modal">Conferma</a>
+      <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Annulla</a>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+</div>
+<!--Modal: modalPush-->
+
        <div class="container">
         <!-- Modal -->
-       <div class="modal" id="modalSuccess" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal" id="modalSuccess_" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
            <div class="modal-dialog">
              <div class="modal-content">
                <div class="modal-header">
@@ -118,3 +158,34 @@
            </div>
          </div>
              </div>
+
+               <!--Modal: modalPush-->
+<div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-notify modal-info" role="document">
+  <!--Content-->
+  <div class="modal-content text-center">
+    <!--Header-->
+    <div class="modal-header d-flex justify-content-center">
+      <p class="heading">Complimenti!</p>
+    </div>
+
+    <!--Body-->
+    <div class="modal-body">
+
+      <i class="fas fa-solid fa-thumbs-up fa-4x animated rotateIn mb-4"></i>
+
+      <p>Prenotazione avvenuta con successo.</p>
+
+    </div>
+
+    <!--Footer-->
+    <div class="modal-footer flex-center">
+
+      <a type="button" class="btn btn-outline-info waves-effect"  data-bs-dismiss="modal" (click)="chiudi()">OK</a>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+</div>
+<!--Modal: modalPush-->

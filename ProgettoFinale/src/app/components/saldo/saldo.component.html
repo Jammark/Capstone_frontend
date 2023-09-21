@@ -1,4 +1,4 @@
-<div class="container-fluid  w-100 h-100 p-4 my-2">
+<div class="container-fluid  w-100 h-100 p-4 my-0">
     <div class="row h-100 gy-2">
       <div class="col-12">
         <div class="d-flex w-100 justify-content-center">
@@ -29,7 +29,7 @@
               </div>
               <div class="col-2">
                 <div class="d-flex justify-content-center align-items-center  w-100 h-100" *ngIf="prenotazione.id">
-                  <button type="button" class="btn btn-success rounded" (click)="showModal(prenotazione.id!)">Acquista</button>
+                  <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#modalPush">Acquista</button>
                 </div>
               </div>
               </div>
@@ -57,6 +57,38 @@
              </div>
            </div>
                </div>
+
+
+                 <!--Modal: modalPush-->
+<div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-notify modal-success" role="document">
+  <!--Content-->
+  <div class="modal-content text-center">
+    <!--Header-->
+    <div class="modal-header d-flex justify-content-center">
+      <p class="heading">Attenzione!</p>
+    </div>
+
+    <!--Body-->
+    <div class="modal-body">
+
+      <i class="fas fa-solid fa-circle-dollar-to-slot fa-4x animated rotateIn mb-4"></i>
+
+      <p>Sicuro di voler procedere con l'acquisto?</p>
+
+    </div>
+
+    <!--Footer-->
+    <div class="modal-footer flex-center">
+      <a  class="btn btn-success" (click)="selezionaPrenotazione(prenotazione)" data-dismiss="modal">Conferma</a>
+      <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Annulla</a>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+</div>
+<!--Modal: modalPush-->
         </ng-container>
       </ng-container>
 

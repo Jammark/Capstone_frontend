@@ -1,5 +1,6 @@
 .card-title{
     font-size: 1.4rem;
+    color:#47b2e4;
 }
 
 .off {
@@ -18,14 +19,33 @@ content: url('../../../../assets/imgs/star.svg');
 }
 
 .card{
+  border-top: 3px solid #47b2e4;
+  border-bottom: 3px solid #47b2e4;
   ul{
     cursor: pointer;
   }
+  overflow: hidden;
 }
 .star{
   height: 25px;
   width: 25px;
 
 
+
+}
+
+object{
+  overflow: hidden;
+}
+.nav-tabs{
+  --mdb-nav-tabs-link-active-border-color: #47b2e4 !important;
+}
+
+.nav-tabs>.active>a, .nav-tabs>.active>a:hover, .nav-tabs>.active>a:focus{
+  border-color: #47b2e4;
+}
+
+mdb-tabs{
+  --mdb-nav-tabs-link-active-color: #47b2e4 !important;
 
 }

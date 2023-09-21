@@ -19,13 +19,13 @@
           <div class="card w-100 h-100">
           <div class="a row no-gutters justify-content-center w-100 h-100" >
             <div class="col-3">
-            <object class="w-100" data="../../../../assets/imgs/alloggio1.jpg" type="image/jpg">
+            <object class="w-100 h-100" data="../../../../assets/imgs/alloggio1.jpg" type="image/jpg">
             <img class="card-img-top img-fluid z-1 h-100" [src]="getAlloggioImgUrl(hotel)" alt="Card image cap" >
             </object>
           </div>
           <div class="col-6">
             <div class="card-body flex-column z-1 align-items-start p-0 w-50 h-100 w-100">
-                <h2 class="card-title p-2 rounded bg-white text-primary">{{hotel.nome}}</h2>
+                <h2 class="card-title p-2 rounded bg-white">{{hotel.nome}}</h2>
                 <ul [id]="'rateContainer'+hotel.id" class="list-unstyled d-flex align-items-center justify-content-start" (click)="showModalVoto(hotel.id)">
                   <ng-container *ngFor="let i of [0,1,2,3,4]">
                     <li>
@@ -80,18 +80,18 @@
   <div class="col-12 container-fluid w-100 h-100 p-2">
       <ng-container *ngIf="this.appartamenti && this.appartamenti.length > 0 else charge2"
         >
-        <div class="row px-0 py-0 ts">
+        <div class="row px-0 py-0 ts mx-0">
       <ng-container *ngFor="let apprt of appartamenti; let i = index">
-        <div class="card w-100 h-100">
+        <div class="card w-100 h-100 px-0">
           <div class="a row no-gutters justify-content-center w-100 h-100" >
-          <div class="col-3">
-            <object class="w-100" data="../../../../assets/imgs/alloggio1.jpg" type="image/jpg">
+          <div class="col-3 px-0">
+            <object class="w-100 h-100" data="../../../../assets/imgs/alloggio1.jpg" type="image/jpg">
             <img class="card-img-top img-fluid z-1 h-100" [src]="getAlloggioImgUrl(apprt)" alt="Card image cap" >
             </object>
           </div>
           <div class="col-6">
             <div class="card-body flex-column z-1 align-items-start p-0  w-100 h-100">
-                <h2 class="card-title p-2 rounded bg-white text-primary">{{apprt.nome}}</h2>
+                <h2 class="card-title p-2 rounded bg-white">{{apprt.nome}}</h2>
                 <ul [id]="'rateContainer'+apprt.id" class="list-unstyled d-flex align-items-center justify-content-start" (click)="showModalVoto(apprt.id)">
                   <ng-container *ngFor="let i of [0,1,2,3,4]">
                     <li>

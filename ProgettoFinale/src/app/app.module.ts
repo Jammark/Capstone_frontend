@@ -42,6 +42,7 @@ import { RiepilogoComponent } from './components/riepilogo/riepilogo.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { PacchettiComponent } from './components/pacchetti/pacchetti.component';
+import { ErrorCatchingInterceptor } from './error-catching.interceptor';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { PacchettiComponent } from './components/pacchetti/pacchetti.component';
     BrowserAnimationsModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorCatchingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     {provide: LocationStrategy, useClass: HashLocationStrategy},

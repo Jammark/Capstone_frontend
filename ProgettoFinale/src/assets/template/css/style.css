@@ -6,6 +6,10 @@
 * License: https://bootstrapmade.com/license/
 */
 
+.nav-link{
+  --mdb-nav-tabs-link-active-color: #47b2e4 !important;
+  --mdb-nav-tabs-link-active-border-color: #47b2e4 !important;
+}
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -140,7 +144,7 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /**
-* Desktop Navigation 
+* Desktop Navigation
 */
 .navbar {
   padding: 0;
@@ -270,7 +274,7 @@ h6 {
 }
 
 /**
-* Mobile Navigation 
+* Mobile Navigation
 */
 .mobile-nav-toggle {
   color: #fff;

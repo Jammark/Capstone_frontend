@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
 import { Alloggio } from 'src/app/model/alloggio';
@@ -95,6 +95,10 @@ export class PrenotazioneHelperComponent implements OnInit{
   }
 
   chiudi():void{
+    var myModal = new bootstrap.Modal(document.getElementById(`modalSuccess`) as HTMLElement);
+   // myModal.hide();
       this.router.navigate(['/home']);
   }
+
+
 }

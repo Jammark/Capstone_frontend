@@ -5,7 +5,7 @@
     <div class="col-2"></div>
     <div class="col-8">
       <div class="card w-100 shadow-none mb-5 mt-3" *ngIf="city">
-        <div class="card-header">
+        <div class="card-header section-title">
           <h2>{{city.nome}}</h2>
         </div>
         <img class="card-img-top w-100 img-fluid z-1 w-100 h-100" [src]="getMetaImgUrl()" alt="Card image cap" >
@@ -15,6 +15,9 @@
       </div>
     </div>
     <div class="col-2"></div>
+    <div class="col-12 section-title w-100 align-items-center justify-content-center">
+      <h2></h2>
+    </div>
     <div class="col-12" *ngIf="alloggio">
       <app-prenotazione-helper [nomeArrivo]="city?.nome" [alloggio]="alloggio"></app-prenotazione-helper>
     </div>

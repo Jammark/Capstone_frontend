@@ -19,6 +19,9 @@ export class AuthService {
     user$ = this.authSubj.asObservable(); // La variabile di tipo BehaviourSubject che trasmetterà la presenza o meno dell'utente
     timeoutLogout: any;
 
+    private msgSubj = new BehaviorSubject<null | string>(null);
+    msg$ = this.msgSubj.asObservable();
+
     constructor(private http: HttpClient, private router: Router) {}
 
     login(data: { email: string; password: string }) {
@@ -98,5 +101,13 @@ export class AuthService {
                 return throwError('Errore nella chiamata');
                 break;
         }
+    }
+
+    register(msg:string):void{
+      this.msgSubj.next(msg);
+    }
+
+    deregister():void{
+      this.msgSubj.next(null);
     }
 }
