@@ -1,6 +1,10 @@
 .card{
   border-top: 3px solid #47b2e4;
   border-bottom: 3px solid #47b2e4;
+
+  .card-header{
+    opacity: 1;
+  }
 }
 
 label{
@@ -10,6 +14,15 @@ label{
 input,select{
   border-right: 3px solid #47b2e4;
   border-left: 3px solid #47b2e4;
+}
+
+.form-outline .form-control ~ .form-label{
+  background-color: white;
+  color: #47b2e4;
+}
+
+input[type=number]{
+  border: 1px solid grey !important;
 }
 
 

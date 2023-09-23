@@ -37,7 +37,9 @@ export class AppComponent {
         }
         this.errorMsg = msg;
         this.showModal();
-      })
+      });
+
+      this.authSrv.restore();
   }
 
   closeModal():void{

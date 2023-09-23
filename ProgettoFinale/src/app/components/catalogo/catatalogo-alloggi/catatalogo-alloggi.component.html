@@ -24,8 +24,9 @@
             </object>
           </div>
           <div class="col-6">
-            <div class="card-body flex-column z-1 align-items-start p-0 w-50 h-100 w-100">
+            <div class="card-body flex-column z-1 align-items-start p-0 w-50 h-100 w-100 justify-content-between">
                 <h2 class="card-title p-2 rounded bg-white">{{hotel.nome}}</h2>
+                <h4 class="card-text align-self-end">{{hotel.prezzo}} euro a notte</h4>
                 <ul [id]="'rateContainer'+hotel.id" class="list-unstyled d-flex align-items-center justify-content-start" (click)="showModalVoto(hotel.id)">
                   <ng-container *ngFor="let i of [0,1,2,3,4]">
                     <li>
@@ -33,6 +34,7 @@
                     </li>
                   </ng-container>
                 </ul>
+
             </div>
           </div>
           <div class="col-3">
@@ -92,13 +94,16 @@
           <div class="col-6">
             <div class="card-body flex-column z-1 align-items-start p-0  w-100 h-100">
                 <h2 class="card-title p-2 rounded bg-white">{{apprt.nome}}</h2>
+                <h4 class="card-text align-self-end">{{apprt.prezzo}} euro a notte</h4>
                 <ul [id]="'rateContainer'+apprt.id" class="list-unstyled d-flex align-items-center justify-content-start" (click)="showModalVoto(apprt.id)">
                   <ng-container *ngFor="let i of [0,1,2,3,4]">
                     <li>
                       <img class="star">
                     </li>
                   </ng-container>
-                </ul> </div>
+                </ul>
+
+              </div>
         </div>
         <div class="col-3">
         <div class="d-flex justify-content-center align-items-center  w-100 h-100">

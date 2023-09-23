@@ -27,6 +27,8 @@ export class AuthGuard implements CanActivate , CanActivateChild{
         return this.autSrv.user$.pipe(
             take(1),
             map((user) => {
+              console.log('auth guard');
+              console.table(user);
                 if (user) {
                     return true;
                 }

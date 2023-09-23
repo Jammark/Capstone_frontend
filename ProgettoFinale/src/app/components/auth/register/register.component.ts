@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import * as bootstrap from 'bootstrap';
 
 @Component({
     selector: 'app-register',
@@ -23,13 +24,15 @@ export class RegisterComponent implements OnInit {
             this.authSrv.signup(form.value).subscribe(resp => {
               console.table(resp);
             }, err => {
-              if(err.error == 'Email already exists' && err.status == 400){
-                alert('Nome utente già registrato.');
+              if(err.status == 400){
+               // alert('Nome utente già registrato.');
+              // this.authSrv.register('Nome utente già registrato.');
                 form.reset();
               }
               this.isLoading = false;
               console.error(err);
             }, () => {
+              this.showModalFinish();
               this.router.navigate(['/login']);
               this.isLoading = false;
             });
@@ -45,5 +48,10 @@ export class RegisterComponent implements OnInit {
         }
     }
 
+    showModalFinish(){
 
+      var myModal = new bootstrap.Modal(document.getElementById(`modalSuccess`) as HTMLElement);
+      myModal.show();
+
+    }
 }

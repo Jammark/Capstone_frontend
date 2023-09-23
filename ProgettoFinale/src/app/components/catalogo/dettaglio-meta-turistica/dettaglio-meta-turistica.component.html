@@ -15,14 +15,20 @@
           <div class="card-text my-2"><h4>{{dest.contenutoSecondario}}</h4></div>
 
           <div *ngIf="dest.cityIds && dest.cityIds.length > 0">
-          <div class="card-text my-2"><h4>Città rilevanti</h4></div>
-          <ng-container *ngFor="let cityId of dest.cityIds; let i = index">
-            <a [routerLink]="['/meta/citta', cityId]" >{{cities.get(cityId)}}</a>
-          </ng-container>
+
         </div>
         </div>
       </div>
     </div>
+    <div class="col-12 d-flex align-items-center justify-content-center"><h2>Città rilevanti</h2></div>
+    <div class="col-3"></div>
+    <div class="col-6 d-flex flex-column">
+      <ng-container *ngFor="let cityId of dest?.cityIds; let i = index">
+        <a [routerLink]="['/meta/citta', cityId]" class="d-flex align-items-center" > <span class="bg rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-geo-alt"></i></span ><span class="mx-3">{{cities.get(cityId)}}</span></a>
+      </ng-container>
+    </div>
+    <div class="col-3"></div>
+
     <div class="col-12 section-title w-100 align-items-center justify-content-center">
       <h2></h2>
     </div>

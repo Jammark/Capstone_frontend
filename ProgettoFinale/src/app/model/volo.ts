@@ -8,4 +8,5 @@ export interface Volo extends Trasporto{
   stopId:number;
   partenza: Aereoporto;
   arrivo: Aereoporto;
+  posti:number;
 }

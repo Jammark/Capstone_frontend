@@ -6,9 +6,11 @@
           <input name="name" required ngModel class="form-control" id="name" type="text">
             <label for="name">Cognome</label>
             <input name="surname" required ngModel class="form-control" id="name" type="text">
+            <!--
             <label for="username">Username</label>
             <input name="username" required ngModel class="form-control" id="username" type="text">
-        </div>
+        -->
+          </div>
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" class="form-control" required ngModel>
@@ -26,3 +28,36 @@
     </div>
   </div>
 </div>
+
+    <!--Modal: modalPush-->
+    <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+      <!--Content-->
+      <div class="modal-content text-center">
+        <!--Header-->
+        <div class="modal-header d-flex justify-content-center">
+          <p class="heading">Complimenti!</p>
+        </div>
+
+        <!--Body-->
+        <div class="modal-body">
+
+          <i class="fas fa-solid fa-thumbs-up fa-4x animated rotateIn mb-4"></i>
+
+          <p>Registrazione avvenuta con successo.</p>
+
+        </div>
+
+        <!--Footer-->
+        <div class="modal-footer flex-center">
+
+          <a type="button" class="btn btn-outline-info waves-effect"  data-bs-dismiss="modal" >OK</a>
+        </div>
+      </div>
+      <!--/.Content-->
+    </div>
+    </div>
+    <!--Modal: modalPush-->
+
+

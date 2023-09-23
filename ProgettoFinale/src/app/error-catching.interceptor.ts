@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, filter, throwError } from 'rxjs';
 import { AuthService } from './components/auth/auth.service';
+import { ErrorPayload } from './model/error-payload';
 
 @Injectable()
 export class ErrorCatchingInterceptor implements HttpInterceptor {
@@ -30,7 +31,8 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
              }
              console.log(errorMsg);
              if(!request.url.endsWith('login')){
-              this.srv.register(errorMsg);
+              const payload: ErrorPayload = error.error;
+              this.srv.register(payload.message);
              }
 
              return throwError(errorMsg);

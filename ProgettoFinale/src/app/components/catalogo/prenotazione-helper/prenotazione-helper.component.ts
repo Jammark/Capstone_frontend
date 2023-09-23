@@ -27,11 +27,13 @@ export class PrenotazioneHelperComponent implements OnInit{
   viaggioAndata?:Trasporto;
   viaggioRitorno?:Trasporto;
   cityNames:string[]=[];
+  numeroPosti:number = 1;
 
   constructor(private mSrv: MeteService,private srv: PrenotazioniService, private router: Router){}
 
   ngOnInit(): void {
       this.getNomiCittà();
+
   }
 
   submit():void{
@@ -65,7 +67,8 @@ export class PrenotazioneHelperComponent implements OnInit{
         id: undefined,
         numeroGiorni: undefined,
         userId: undefined,
-        prezzo: undefined
+        prezzo: undefined,
+        numeroPosti: this.numeroPosti
       };
 
       this.srv.prenota(prenotazione).subscribe(item => {

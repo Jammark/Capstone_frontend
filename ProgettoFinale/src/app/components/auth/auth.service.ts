@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, throwError } from 'rxjs'; // Tipo particolare di Observable che richiede un valore iniziale ed emette in tempo reale il suo cambiamento di valore, desottoscrivendosi immediatamente dopo
 import { JwtHelperService } from '@auth0/angular-jwt'; // Libreria per la lettura del token
@@ -10,7 +10,7 @@ import { Router } from '@angular/router'; // Utilizzato per reindirizzare ad alt
 @Injectable({
     providedIn: 'root',
 })
-export class AuthService {
+export class AuthService{
     jwtHelper = new JwtHelperService(); // Serve per leggere e validare il token
     baseURL = environment.baseURL;
     private authSubj = new BehaviorSubject<null | AuthData>(null); // Serve per comunicare in tempo reale all'applicazione la presenza dell'utente autenticato
@@ -24,10 +24,12 @@ export class AuthService {
 
     constructor(private http: HttpClient, private router: Router) {}
 
+
     login(data: { email: string; password: string }) {
         return this.http.post<AuthData>(`${this.baseURL}auth/login`, data).pipe(
 
             tap((data) => {
+              console.log('login');
                 console.log(data);
                 this.authSubj.next(data);
                 this.utente = data;
@@ -66,6 +68,7 @@ export class AuthService {
     }
 
     logout() {
+      console.log('logout');
         this.authSubj.next(null);
         localStorage.removeItem('user');
         sessionStorage.removeItem('tmpUrl');
@@ -84,6 +87,7 @@ export class AuthService {
             expirationDate.getTime() - new Date().getTime();
         this.timeoutLogout = setTimeout(() => {
             this.logout();
+            console.log('autologout');
         }, expirationMilliseconds);
     }
 

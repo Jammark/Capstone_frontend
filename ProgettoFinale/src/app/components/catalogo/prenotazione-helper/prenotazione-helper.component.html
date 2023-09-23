@@ -67,10 +67,29 @@
         </div>
       </div>
       </div>
+
+
+
+
       <div class="col-7">
-        <div class="d-flex w-100 flex-column align-items-end justify-content-center p-4 h-100">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Prenota</button><!--(click)="showModal('p')"-->
+        <form #form1="ngForm" (ngSubmit)="submit()" class="w-100">
+        <div class="d-flex w-100 align-items-center justify-content-end p-4 h-100">
+
+          <div ngModelGroup="prnt1" #prnt1Group="ngModelGroup" id="prnt1">
+            <div class="py-2 d-flex justify-content-around w-50 mx-2">
+              <div class="form-group p-2 d-flex flex-column align-items-center flex-fill">
+                <div class="form-outline" style="width: 22rem;">
+                <input mdbInput class="form-control active" id="num" type="number" min="1" max="50" step="1" value="1" name="num" [ngModel]="numeroPosti"
+                  required #num ="ngModel"  (ngModelChange)="numeroPosti = $event">
+                  <label class="form-label" for="num">Numero posti</label>
+                </div>
+                </div>
+            </div>
+          </div>
+
+          <button type="submit" [disabled]="form1.invalid" class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Prenota</button><!--(click)="showModal('p')"-->
         </div>
+      </form>
       </div>
     </div>
     </div>

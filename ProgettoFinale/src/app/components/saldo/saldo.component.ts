@@ -8,6 +8,8 @@ import { Alloggio } from 'src/app/model/alloggio';
 import { Trasporto } from 'src/app/model/trasporto';
 import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
+import { MeteService } from 'src/app/service/mete.service';
+import { Meta } from 'src/app/model/meta';
 
 @Component({
   selector: 'app-saldo',
@@ -18,9 +20,10 @@ export class SaldoComponent implements OnInit{
 
   prenotazioni?:Prenotazione[];
   alloggi:Map<number, Alloggio>=new Map();
+  mete: Map<number, Meta> = new Map();
   trasporti:Map<number, Trasporto>=new Map();
 
-  constructor(private srv: PrenotazioniService, private aSrv : AlloggiService, private tSrv:TrasportiService, private router: Router){}
+  constructor(private srv: PrenotazioniService,private mSrv: MeteService, private aSrv : AlloggiService, private tSrv:TrasportiService, private router: Router){}
 
   ngOnInit(): void {
     this.srv.getSaldo().subscribe(list => {
@@ -28,10 +31,16 @@ export class SaldoComponent implements OnInit{
       list.map(e => e.alloggioId).forEach(id => {
         this.aSrv.getHotelById(id).subscribe(item => {
           this.alloggi.set(item.id, item);
+          this.mSrv.getCittàById(item.metaId).subscribe(city => {
+            this.mete.set(id, city);
+          });
         })
 
         this.aSrv.getAppartamentoById(id).subscribe(item => {
           this.alloggi.set(item.id, item);
+          this.mSrv.getCittàById(item.metaId).subscribe(city => {
+            this.mete.set(id, city);
+          });
         })
       });
       list.map(e => e.trasportoId).forEach(id => {
@@ -49,6 +58,10 @@ export class SaldoComponent implements OnInit{
 
   getAlloggio(id:number):Alloggio | undefined{
     return this.alloggi.get(id);
+  }
+
+  getMeta(p:Prenotazione):Meta | undefined{
+    return this.mete.get(p.alloggioId);
   }
 
   getTrasporto(id:number):Trasporto | undefined{

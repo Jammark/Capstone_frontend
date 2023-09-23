@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router , ActivatedRoute} from '@angular/router';
 import { catchError } from 'rxjs';
+import * as bootstrap from 'bootstrap';
 
 @Component({
     selector: 'app-login',
@@ -24,12 +25,14 @@ export class LoginComponent implements OnInit {
         try {
             this.authSrv.login(form.value).subscribe(res => {
               this.isLoading = false;
-            alert('Login effettuato!');
+           // alert('Login effettuato!');
+           this.showModalFinish();
             let val = sessionStorage.getItem('tmpUrl');
             val ?  this.router.navigate([val]) : this.router.navigate(['/home']);
             }, err => {
               this.isLoading = false;
-              alert('Login sbagliato!');
+              //alert('Login sbagliato!');
+              this.authSrv.register('Login sbagliato!');
               console.error(err);
             });
 
@@ -48,4 +51,11 @@ export class LoginComponent implements OnInit {
       this.router.navigate(["/register"], { relativeTo: this.route });
     }
     */
+
+    showModalFinish(){
+
+      var myModal = new bootstrap.Modal(document.getElementById(`modalSuccess`) as HTMLElement);
+      myModal.show();
+
+    }
 }

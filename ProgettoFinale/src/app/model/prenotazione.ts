@@ -10,4 +10,5 @@ export interface Prenotazione {
   trasportoId:number;
   ritornoId:number;
   prezzo:number | undefined;
+  numeroPosti:number;
 }

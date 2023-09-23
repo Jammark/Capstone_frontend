@@ -1,3 +1,18 @@
 a{
   color: #47b2e4;
 }
+
+a:hover i {
+
+  color: #fff;
+}
+
+a:hover .bg {
+  background: #47b2e4;
+}
+a .bg{
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+  background: #b8d9e8;
+}
