@@ -23,9 +23,9 @@
               <div class="col-4">
                 <div class="card-body d-flex flex-column">
 
-                <h4 class="card-text">Andata: {{getTrasporto(prenotazione.trasportoId)?.nome}}, {{getTrasporto(prenotazione.trasportoId)?.dataPartenza}}</h4>
+                <h4 class="card-text">Andata: {{getTrasporto(prenotazione.trasportoId)?.nome}}, {{getDataPartenza(getTrasporto(prenotazione.trasportoId)!)}}</h4>
 
-                <h4 class="card-text">Ritorno: {{getTrasporto(prenotazione.ritornoId)?.nome}}, {{getTrasporto(prenotazione.ritornoId)?.dataPartenza}}</h4>
+                <h4 class="card-text">Ritorno: {{getTrasporto(prenotazione.ritornoId)?.nome}}, {{getDataPartenza(getTrasporto(prenotazione.ritornoId)!)}}</h4>
               </div>
               </div>
               <div class="col-2">

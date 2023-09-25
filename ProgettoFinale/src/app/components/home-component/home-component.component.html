@@ -36,7 +36,7 @@
               </svg>
             </span ><span class="mx-2">Pacchetto vacanza</span></button>
 
-            <app-pacchetti [meta] = "meta" (emitter)="checks.set(meta.id,$event)" *ngIf="checks.get(meta.id)"></app-pacchetti>
+            <app-pacchetti [meta] = "meta" (emitter)="checks.set(meta.id,$event)" *ngIf="checks.get(meta.id)" class="w-100"></app-pacchetti>
         </div>
       </div>
     </div>

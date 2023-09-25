@@ -8,6 +8,7 @@ import { Prenotazione } from 'src/app/model/prenotazione';
 import { AlloggiService } from 'src/app/service/alloggi.service';
 import { MeteService } from 'src/app/service/mete.service';
 import { PrenotazioniService } from 'src/app/service/prenotazioni.service';
+import { DateUtil } from 'src/app/util/date-util';
 
 @Component({
   selector: 'app-riepilogo',
@@ -53,5 +54,15 @@ constructor(private srv: PrenotazioniService,private mSrv: MeteService, private 
 
   chiudi():void{
     this.router.navigate(['/home']);
+  }
+
+  getData(a:Acquisto):string{
+    let d = new Date(a.data);
+    return DateUtil.euroFormatDate(d);
+  }
+
+  getDataPre(p:Prenotazione):string{
+    let d = new Date(p.data);
+    return DateUtil.euroFormatDate(d);
   }
 }

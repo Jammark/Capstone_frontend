@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
 import { MeteService } from 'src/app/service/mete.service';
 import { Meta } from 'src/app/model/meta';
+import { DateUtil } from 'src/app/util/date-util';
 
 @Component({
   selector: 'app-saldo',
@@ -79,5 +80,15 @@ export class SaldoComponent implements OnInit{
     var myModal = new bootstrap.Modal(document.getElementById(`exampleModal${id}`) as HTMLElement);
     myModal.show();
 
+  }
+
+  getDataPartenza(t:Trasporto):string{
+    let d = new Date(t.dataPartenza);
+    return DateUtil.euroFormatDate(d);
+  }
+
+  getDataArrivo(t:Trasporto):string{
+    let d = new Date(t.dataArrivo);
+    return DateUtil.euroFormatDate(d);
   }
 }

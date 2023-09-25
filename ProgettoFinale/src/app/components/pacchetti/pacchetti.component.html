@@ -22,13 +22,13 @@
         <div class="col-6">
           <div class="card-body flex-column z-1 align-items-start p-0 w-50 h-100 w-100">
               <h2 class="card-title p-2 rounded bg-white text-primary">Voli</h2>
-              <h4 class="card-text">Andata: {{getAndata(pacchetto)?.nome}} - {{getAndata(pacchetto)?.dataPartenza}}</h4>
-              <h4 class="card-text">Ritorno: {{getRitorno(pacchetto)?.nome}} - {{getRitorno(pacchetto)?.dataPartenza}}</h4>
+              <h4 class="card-text">Andata: {{getAndata(pacchetto)?.nome}} - {{getDataVolo(getAndata(pacchetto)!)}}</h4>
+              <h4 class="card-text">Ritorno: {{getRitorno(pacchetto)?.nome}} - {{getDataVolo(getRitorno(pacchetto)!)}}</h4>
           </div>
         </div>
         <div class="col-3">
         <div class="card-footer d-flex justify-content-center align-items-center w-100 h-100">
-          <button type="button" class="btn btn-success rounded" [attr.data-target]="'#modalPush'+pacchetto.id" (click)="showModal(pacchetto.id!)">Prenota</button>
+          <button type="button" class="btn btn-success rounded" [attr.data-target]="'#modalPush'+pacchetto.id" (click)="showModal(pacchetto.id!)"><i class="fa-solid fa-bookmark me-2"></i>Prenota</button>
         </div>
         </div>
         </div>

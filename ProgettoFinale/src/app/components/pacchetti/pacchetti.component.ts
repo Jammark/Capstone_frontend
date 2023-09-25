@@ -8,6 +8,7 @@ import { Trasporto } from 'src/app/model/trasporto';
 import { AlloggiService } from 'src/app/service/alloggi.service';
 import { PrenotazioniService } from 'src/app/service/prenotazioni.service';
 import { TrasportiService } from 'src/app/service/trasporti.service';
+import { DateUtil } from 'src/app/util/date-util';
 
 @Component({
   selector: 'app-pacchetti',
@@ -82,6 +83,11 @@ selezionaPacchetto(p:Prenotazione):void{
 
   close():void{
     this.emitter.emit(false);
+  }
+
+  getDataVolo(t:Trasporto):string{
+    let d = new Date(t.dataPartenza);
+    return DateUtil.euroFormatDate(d);
   }
 
 }

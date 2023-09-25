@@ -10,9 +10,9 @@
         </div>
         <img class="card-img-top w-100 img-fluid z-1 w-100 h-100" [src]="getMetaImgUrl()" alt="Card image cap" >
         <div class="card-body">
-          <div class="card-text my-2"><h4>{{dest.descrizione}}</h4></div>
-          <div class="card-text my-2"><h4>{{dest.contenutoPrincipale}}</h4></div>
-          <div class="card-text my-2"><h4>{{dest.contenutoSecondario}}</h4></div>
+          <div class="my-2"><h4 class="card-text text-center">{{dest.descrizione}}</h4></div>
+          <div class="my-2"><h4 class="card-text text-center">{{dest.contenutoPrincipale}}</h4></div>
+          <div class="my-2"><h4 class="card-text text-center">{{dest.contenutoSecondario}}</h4></div>
 
           <div *ngIf="dest.cityIds && dest.cityIds.length > 0">
 

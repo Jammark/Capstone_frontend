@@ -2,7 +2,7 @@
   <div class="row gy-3">
     <div class="col-12">
       <div class="d-flex w-100 justify-content-center">
-        <h1>Riepilogo ordini</h1>
+        <h1 class="text-info">Riepilogo ordini</h1>
       </div>
     </div>
     <ng-container *ngIf="this.acquisti && this.acquisti.length > 0" else empty>
@@ -21,13 +21,14 @@
               <div class="card-body d-flex flex-column">
                 <h2 class="card-text">{{getAlloggio(acquisto.prenotazione.alloggioId)?.nome}}</h2>
                 <h4 class="card-text">località {{getMeta(acquisto.prenotazione)?.nome}}</h4>
+                <h4 class="card-text">data {{getDataPre(acquisto.prenotazione)}}</h4>
                 <h4 class="card-text">per {{acquisto.prenotazione.numeroGiorni}} giorni</h4>
                 <h4 class="card-text">prezzo: {{acquisto.prenotazione.prezzo}} euro</h4>
               </div>
             </div>
             <div class="col-2">
               <div class="card-footer d-flex justify-content-center align-items-center  w-100 h-100">
-                  <h4 class="card-text">{{acquisto.data}}</h4>
+                  <h4 class="card-text">{{getData(acquisto)}}</h4>
               </div>
             </div>
             </div>
