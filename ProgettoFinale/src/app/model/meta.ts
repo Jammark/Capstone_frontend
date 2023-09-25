@@ -4,4 +4,5 @@ export interface Meta {
   descrizione: string;
   id: number;
   imgUrl:string;
+  numHotels:number;
 }

@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
 import { Alloggio } from 'src/app/model/alloggio';
+import { Appartamento } from 'src/app/model/appartamento';
 import { Prenotazione } from 'src/app/model/prenotazione';
 import { Trasporto } from 'src/app/model/trasporto';
 import { MeteService } from 'src/app/service/mete.service';
@@ -103,5 +104,13 @@ export class PrenotazioneHelperComponent implements OnInit{
       this.router.navigate(['/home']);
   }
 
+  getMaxPosti():number{
+    let val = this.alloggio as Appartamento | null | undefined;
+    if (val){
+      return val.capienza;
+    }else{
+      return 50;
+    }
+  }
 
 }
