@@ -44,7 +44,7 @@
 
               </li>
               <li class="nav-item align-self-end" *ngIf="user">
-                <button type="button" class="btn btn-white float-end" *ngIf="user" (click)="logout()"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</button>
+                <button type="button" class="btn btn-white float-end" *ngIf="user" data-toggle="modal" data-target="#modalPush"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</button>
               </li>
 
          </ul>
@@ -66,3 +66,33 @@
       </div>
 
 </nav>
+ <!--Modal: modalPush-->
+ <div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog modal-notify modal-info" role="document">
+   <!--Content-->
+   <div class="modal-content text-center">
+     <!--Header-->
+     <div class="modal-header d-flex justify-content-center">
+       <p class="heading">Attenzione!</p>
+     </div>
+
+     <!--Body-->
+     <div class="modal-body">
+
+       <i class="fas fa-solid fa-right-from-bracket rotateIn mb-4"></i>
+
+       <p>Sicuro di voler uscire?</p>
+
+     </div>
+
+     <!--Footer-->
+     <div class="modal-footer flex-center">
+       <a  class="btn btn-info text-white" (click)="logout()" data-dismiss="modal">Conferma</a>
+       <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Annulla</a>
+     </div>
+   </div>
+   <!--/.Content-->
+ </div>
+ </div>
+ <!--Modal: modalPush-->

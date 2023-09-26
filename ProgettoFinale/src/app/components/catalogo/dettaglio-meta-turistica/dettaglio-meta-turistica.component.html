@@ -24,7 +24,7 @@
     <div class="col-3"></div>
     <div class="col-6 d-flex flex-column">
       <ng-container *ngFor="let cityId of dest?.cityIds; let i = index">
-        <a [routerLink]="['/meta/citta', cityId]" class="d-flex align-items-center" > <span class="bg rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-geo-alt"></i></span ><span class="mx-3">{{cities.get(cityId)}}</span></a>
+        <a [routerLink]="['/meta/citta', cityId]" class="d-flex align-items-center my-3" > <span class="bg rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-geo-alt"></i></span ><span class="mx-3">{{cities.get(cityId)}}</span></a>
       </ng-container>
     </div>
     <div class="col-3"></div>

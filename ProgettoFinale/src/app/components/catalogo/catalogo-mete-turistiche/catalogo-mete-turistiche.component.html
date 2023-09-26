@@ -1,4 +1,4 @@
-<div class="container-fluid w-100 h-100 p-0">
+<div id="main" class="container-fluid w-100 h-100 p-0">
 
   <div class="row px-0 py-0 ts position-relative">
 
@@ -12,10 +12,10 @@
 
     <ng-container *ngIf="this.cities && this.cities.length > 0 else charge"
       >
-      <div class="row px-0 py-0 ts">
+      <div class="row px-0 py-0 ts gy-3">
       <ng-container *ngFor="let city of cities; let i = index">
 
-        <div class="col-lg-2 col-md-3" >
+        <div class="col-lg-3 col-md-4" >
           <div class="card position-relative" (click)="selezionaCity(city)">
             <img class="card-img-top w-100 img-fluid z-1 w-100 h-100" [src]="getMetaImgUrl(city)" alt="Card image cap" >
             <div class="card-body flex-column position-absolute z-1 align-items-start p-0">
@@ -33,13 +33,13 @@
   <div class="col-12 container-fluid w-100 h-100 p-2">
       <ng-container *ngIf="this.destinazioni && this.destinazioni.length > 0 else charge"
         >
-        <div class="row px-0 py-0 ts">
+        <div class="row px-0 py-0 ts gy-3">
       <ng-container *ngFor="let dest of destinazioni; let i = index">
-        <div class="col-lg-2 col-md-3" >
+        <div class="col-lg-3 col-md-4" >
           <div class="card position-relative " (click)="selezionaDest(dest)">
             <img class="card-img-top w-100 img-fluid z-1 w-100 h-100" [src]="getMetaImgUrl(dest)" alt="Card image cap" >
             <div class="card-body flex-column position-absolute z-1 align-items-start p-0">
-                <h2 class="card-title p-2 rounded bg-white txr-c">{{dest.nome}}</h2>
+                <h2 class="card-title p-2 rounded bg-white txt-c">{{dest.nome}}</h2>
             </div>
           </div>
         </div>

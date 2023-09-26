@@ -10,10 +10,11 @@
           <div class="col-2"></div>
         <div class="col-8">
 
-            <div class="card w-100 h-100">
+            <div class="card w-100 h-100 py-2">
               <div class="a row no-gutters justify-content-center w-100 h-100" >
               <div class="col-4">
-                <div class="card-header d-flex flex-column">
+                <div class="card-header d-flex flex-column py-2">
+                  <i class="fa-solid fa-hotel align-self-center my-2 fa-xl"></i>
                   <h2 class="card-text">{{getAlloggio(prenotazione.alloggioId)?.nome}}</h2>
                   <h4 class="card-text">località: {{getMeta(prenotazione)?.nome}}</h4>
                   <h4 class="card-text">per {{prenotazione.numeroGiorni}} giorni</h4>
@@ -21,16 +22,20 @@
                 </div>
               </div>
               <div class="col-4">
-                <div class="card-body d-flex flex-column">
+                <div class="card-body d-flex flex-column py-2">
+                  <i class="fa-solid fa-plane-circle-check align-self-center my-2 fa-xl"></i>
 
                 <h4 class="card-text">Andata: {{getTrasporto(prenotazione.trasportoId)?.nome}}, {{getDataPartenza(getTrasporto(prenotazione.trasportoId)!)}}</h4>
 
                 <h4 class="card-text">Ritorno: {{getTrasporto(prenotazione.ritornoId)?.nome}}, {{getDataPartenza(getTrasporto(prenotazione.ritornoId)!)}}</h4>
               </div>
               </div>
-              <div class="col-2">
+              <div class="col-2 h-100">
+                <div class="card-footer d-flex flex-column h-100 py-2">
+                  <i class="fa-solid fa-sack-dollar align-self-center my-2 fa-xl"></i>
                 <div class="d-flex justify-content-center align-items-center  w-100 h-100" *ngIf="prenotazione.id">
                   <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#modalPush">Acquista</button>
+                </div>
                 </div>
               </div>
               </div>

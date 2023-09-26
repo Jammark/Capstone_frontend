@@ -43,7 +43,8 @@ export class HomeComponent implements OnInit{
 
   });
 
-    let h = window.innerHeight;//document.getElementById('c')!.offsetHeight;
+    let h = window.innerHeight;
+    let hc = document.getElementById('c')!.offsetTop;//document.getElementById('c')!.offsetHeight;
 //    window.onload = () => {
     document.addEventListener("scroll", (event) => {
       let lastKnownScrollPosition = window.scrollY;
@@ -51,7 +52,7 @@ export class HomeComponent implements OnInit{
 
 
       let current = this.scroll.get(index) ? this.scroll.get(index): false;
-      let val = lastKnownScrollPosition + h > target!.offsetTop;
+      let val = lastKnownScrollPosition + h > target!.offsetTop +hc;
       //lastKnownScrollPosition + h > target!.offsetTop + target!.offsetHeight && lastKnownScrollPosition > target!.offsetTop;
       this.scroll.set(index, val);
 
@@ -78,7 +79,7 @@ export class HomeComponent implements OnInit{
 
 
     let current = this.scroll2.get(index) ? this.scroll2.get(index): false;
-    let val = lastKnownScrollPosition + h > target!.offsetTop + target!.offsetHeight;
+    let val = lastKnownScrollPosition + h > target!.offsetTop + target!.offsetHeight +hc;
     //lastKnownScrollPosition + h > target!.offsetTop + target!.offsetHeight && lastKnownScrollPosition > target!.offsetTop;
     this.scroll2.set(index, val);
 
@@ -99,6 +100,8 @@ export class HomeComponent implements OnInit{
   getMetaImgUrl(meta:Meta):string{
     return this.srv.getMetaImgUrl(meta);
   }
+
+
 
   mostraPacchetti(m:Meta):void{
     this.checks.set(m.id, true);
