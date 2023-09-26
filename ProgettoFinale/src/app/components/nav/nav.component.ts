@@ -3,17 +3,20 @@ import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/service/user.service';
 import { AuthData } from '../auth/auth-data.interface';
 import { AuthService } from '../auth/auth.service';
-
+import { PrenotazioniService } from 'src/app/service/prenotazioni.service';
+import { OnInit } from '@angular/core';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent {
+export class NavComponent implements OnInit{
   user!: AuthData | null;
   utente?: User | null;
 
-  constructor(private authSrv: AuthService, private userSrv: UserService) {}
+  count:number=0;
+
+  constructor(private authSrv: AuthService, private userSrv: UserService, private pSrv: PrenotazioniService) {}
 
   ngOnInit(): void {
       this.authSrv.user$.subscribe((_user) => {
@@ -29,6 +32,10 @@ export class NavComponent {
 
       this.userSrv.user$.subscribe(item => {
         this.utente = item;
+      });
+
+      this.pSrv.getSaldo().subscribe(lista => {
+        this.count = lista.length;
       });
   }
 

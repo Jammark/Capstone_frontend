@@ -40,7 +40,8 @@
                       class="nav-link"
                       [routerLink]="['/saldo']"
                       routerLinkActive="active"
-                      >Saldo</a>
+                      ><span *ngIf="this.count > 0"class="rounded-circle bg-white me-2 text-dark text-center d-flex align-items-center justify-content-center" style="height: 20px; width: 20px;">{{count}}</span>
+                      Saldo</a>
 
               </li>
               <li class="nav-item align-self-end" *ngIf="user">

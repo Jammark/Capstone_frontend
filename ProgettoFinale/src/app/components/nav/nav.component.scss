@@ -14,6 +14,23 @@ img{
 
 .nav-link.active{
   color: #209dd8;
+  span{
+    background-color: #209dd8 !important;
+    color: white !important;
+  }
+}
+
+.nav-link:hover{
+  span{
+    background-color: #209dd8 !important;
+    color: white !important;
+  }
+}
+
+.nav-link{
+  span{
+    font-size: 0.7rem;
+  }
 }
 
 img{
