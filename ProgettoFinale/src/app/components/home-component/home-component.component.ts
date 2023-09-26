@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit{
   });
 
     let h = window.innerHeight;
-    let hc = document.getElementById('c')!.offsetTop;//document.getElementById('c')!.offsetHeight;
+    let hc = document.getElementById('c')!.offsetTop +document.getElementsByTagName('nav')[0].offsetHeight;//document.getElementById('c')!.offsetHeight;
 //    window.onload = () => {
     document.addEventListener("scroll", (event) => {
       let lastKnownScrollPosition = window.scrollY;
