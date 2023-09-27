@@ -15,7 +15,7 @@
             <div class="col-5">
               <div class="card-header d-flex flex-column py-2">
                 <i class="fa-solid fa-hashtag align-self-center my-2 fa-xl"></i>
-                <h4 class="card-text">Prenotazione numero: {{acquisto.prenotazioneId}}</h4>
+                <h4 class="card-text">Prenotazione <br/>numero: {{acquisto.prenotazioneId}}</h4>
               </div>
             </div>
             <div class="col-5">
@@ -32,7 +32,8 @@
 
               <div class="card-footer d-flex flex-column w-100 h-100 py-2">
                 <i class="fa-solid fa-calendar-days align-self-center my-2 fa-xl"></i>
-                <div class="d-flex justify-content-center align-items-center  w-100 h-100">
+                <div class="d-flex flex-column justify-content-center align-items-center  w-100 h-100">
+                  <h4 class="card-text fs-6">pagamento:</h4>
                   <h4 class="card-text">{{getData(acquisto)}}</h4>
                 </div>
               </div>
