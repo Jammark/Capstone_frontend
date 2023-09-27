@@ -87,7 +87,7 @@
             </div>
           </div>
 
-          <button type="submit" [disabled]="form1.invalid" class="btn btn-primary" data-toggle="modal" data-target="#modalPush"><i class="fa-solid fa-bookmark me-2"></i>Prenota</button><!--(click)="showModal('p')"-->
+          <button type="submit" [disabled]="form1.invalid || !this.viaggioAndata || !this.viaggioRitorno" class="btn btn-primary" data-toggle="modal" data-target="#modalPush"><i class="fa-solid fa-bookmark me-2"></i>Prenota</button><!--(click)="showModal('p')"-->
         </div>
       </form>
       </div>
