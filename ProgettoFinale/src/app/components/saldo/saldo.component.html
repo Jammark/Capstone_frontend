@@ -34,7 +34,7 @@
                 <div class="card-footer d-flex flex-column h-100 py-2">
                   <i class="fa-solid fa-sack-dollar align-self-center my-2 fa-xl"></i>
                 <div class="d-flex justify-content-center align-items-center  w-100 h-100" *ngIf="prenotazione.id">
-                  <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#modalPush">Acquista</button>
+                  <button type="button" class="btn btn-success rounded" data-toggle="modal" [attr.data-target]="'#modalPushSaldo'+prenotazione.id">Acquista</button>
                 </div>
                 </div>
               </div>
@@ -66,7 +66,7 @@
 
 
                  <!--Modal: modalPush-->
-<div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" [id]="'modalPushSaldo'+prenotazione.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
 <div class="modal-dialog modal-notify modal-success" role="document">
   <!--Content-->

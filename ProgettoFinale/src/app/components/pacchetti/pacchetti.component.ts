@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
 import { Alloggio } from 'src/app/model/alloggio';
@@ -15,7 +15,7 @@ import { DateUtil } from 'src/app/util/date-util';
   templateUrl: './pacchetti.component.html',
   styleUrls: ['./pacchetti.component.scss']
 })
-export class PacchettiComponent implements OnInit, OnChanges{
+export class PacchettiComponent implements OnInit, OnChanges, AfterViewChecked{
 
   @Input()
   meta?:Meta;
@@ -25,6 +25,9 @@ export class PacchettiComponent implements OnInit, OnChanges{
   @Output() emitter = new EventEmitter<boolean>();
 
   constructor(private srv: PrenotazioniService, private aSrv: AlloggiService, private tSrv: TrasportiService, private router: Router){}
+  ngAfterViewChecked(): void {
+    this.setup();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['meta']){
@@ -34,6 +37,8 @@ export class PacchettiComponent implements OnInit, OnChanges{
         this.pacchetti.forEach(p => {
           this.aSrv.getAppartamentoById(p.alloggioId).subscribe(item => {
             this.alloggi.push(item);
+            console.log('pacchetti');
+            console.table(item);
           });
           this.aSrv.getHotelById(p.alloggioId).subscribe(item => {
             this.alloggi.push(item);
@@ -47,6 +52,22 @@ export class PacchettiComponent implements OnInit, OnChanges{
         });
       })
     }
+  }
+
+  setup():void{
+    this.pacchetti?.forEach((p, index) => {
+      let container = document.getElementById(index+'rateContainer'+this.meta!.id);
+      for(let i = 0; i < 5; i++){//vengono aggiunte le 10 stelline di rating
+        //  let parent = document.createElement('li');
+          let child: HTMLImageElement = container?.getElementsByClassName('star')[i] as HTMLImageElement;
+          //child.setAttribute('src','../../../');
+       //   console.table(i+' child '+child);
+          let a = this.alloggi.find(e => e.id = p.alloggioId);
+          if(a){
+          child.classList.add(a!.rate > i ? 'on':'off');
+          }
+      }
+    });
   }
 
   getAlloggio(p:Prenotazione):Alloggio | undefined{
@@ -66,14 +87,17 @@ getAlloggioImgUrl(a:Alloggio):string{
 }
 
 showModal(id:number){
-  $('#modalPush'+id).appendTo("body").modal('show');
+  $('#'+this.meta!.id+'modalPush'+id).appendTo("body").modal('show');
   //var myModal = new bootstrap.Modal(document.getElementById(`exampleModal`+id) as HTMLElement);
   //myModal.show();
 }
 
 selezionaPacchetto(p:Prenotazione):void{
+  console.log('prenotazione pacchetto.');
+  console.table(p);
+
   this.srv.prenota(p).subscribe(item => {
-      this.router.navigate(['/saldo']);
+     this.router.navigate(['/saldo']);
   })
 }
 

@@ -17,3 +17,7 @@ i{
   height: 30px;
   width: 30px;
 }
+
+:host{
+  min-height: 100vh;
+}

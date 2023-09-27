@@ -18,18 +18,29 @@
           <img class="card-img-top img-fluid z-1 h-100 w-50" [src]="getAlloggioImgUrl(getAlloggio(pacchetto)!)" alt="Card image cap" >
 
           <h4 class="card-text">{{getAlloggio(pacchetto)?.nome}}</h4>
+          <ul [id]="i+'rateContainer'+meta!.id" class="list-unstyled d-flex align-items-center justify-content-start">
+            <ng-container *ngFor="let i of [0,1,2,3,4]">
+              <li>
+                <img class="star">
+              </li>
+            </ng-container>
+          </ul>
         </div>
         <div class="col-6">
           <div class="card-body flex-column z-1 d-flex px-0 py-2 w-50 h-100 w-100">
             <i class="fa-solid fa-plane-circle-check align-self-center my-2 fa-xl"></i>
-              <h2 class="card-title p-2 rounded bg-white text-primary">Voli</h2>
+            <div class="d-flex">
+              <h2 class="card-title p-2 rounded bg-white txt-c">Voli</h2>
+              <div class="flex-column d-flex ms-3">
               <h4 class="card-text">Andata: {{getAndata(pacchetto)?.nome}} - {{getDataVolo(getAndata(pacchetto)!)}}</h4>
               <h4 class="card-text">Ritorno: {{getRitorno(pacchetto)?.nome}} - {{getDataVolo(getRitorno(pacchetto)!)}}</h4>
-          </div>
+            </div>
+            </div>
+            </div>
         </div>
         <div class="col-3">
         <div class="card-footer d-flex justify-content-center align-items-center w-100 h-100">
-          <button type="button" class="btn btn-success rounded py-2 px-3" [attr.data-target]="'#modalPush'+pacchetto.id" (click)="showModal(pacchetto.id!)"><i class="fa-solid fa-bookmark me-2"></i>Prenota</button>
+          <button type="button" class="btn btn-success rounded py-2 px-3" [attr.data-target]="'#'+meta!.id+'modalPush'+i" (click)="showModal(i)"><i class="fa-solid fa-bookmark me-2"></i>Prenota</button>
         </div>
         </div>
         </div>
@@ -60,6 +71,39 @@
           -->
 
       </div>
+
+       <!--Modal: modalPush-->
+       <div class="modal fade" [id]="meta!.id+'modalPush'+i" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+       <div class="modal-dialog modal-notify modal-info" role="document">
+         <!--Content-->
+         <div class="modal-content text-center">
+           <!--Header-->
+           <div class="modal-header d-flex justify-content-center">
+             <p class="heading">Attenzione!</p>
+           </div>
+
+           <!--Body-->
+           <div class="modal-body">
+
+             <i class="fas fa-bell fa-4x animated rotateIn mb-4"></i>
+
+             <p>Vuoi procedere con l'aquisto del pacchetto?</p>
+
+           </div>
+
+           <!--Footer-->
+           <div class="modal-footer flex-center">
+             <a  class="btn btn-info" (click)="selezionaPacchetto(pacchetto)" data-bs-dismiss="modal">Procedi</a>
+             <a type="button" class="btn btn-outline-info waves-effect" data-bs-dismiss="modal">Annulla</a>
+           </div>
+         </div>
+         <!--/.Content-->
+       </div>
+       </div>
+       <!--Modal: modalPush-->
+
+
     </ng-container>
   </div>
     </ng-container>
@@ -73,34 +117,5 @@
 </div>
 
 <ng-container *ngFor="let pacchetto of pacchetti; let i = index">
-                 <!--Modal: modalPush-->
-                 <div class="modal fade" [id]="'modalPush'+pacchetto.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                 <div class="modal-dialog modal-notify modal-info" role="document">
-                   <!--Content-->
-                   <div class="modal-content text-center">
-                     <!--Header-->
-                     <div class="modal-header d-flex justify-content-center">
-                       <p class="heading">Attenzione!</p>
-                     </div>
 
-                     <!--Body-->
-                     <div class="modal-body">
-
-                       <i class="fas fa-bell fa-4x animated rotateIn mb-4"></i>
-
-                       <p>Vuoi procedere con l'aquisto del pacchetto?</p>
-
-                     </div>
-
-                     <!--Footer-->
-                     <div class="modal-footer flex-center">
-                       <a  class="btn btn-info" (click)="selezionaPacchetto(pacchetto)" data-bs-dismiss="modal">Procedi</a>
-                       <a type="button" class="btn btn-outline-info waves-effect" data-bs-dismiss="modal">Annulla</a>
-                     </div>
-                   </div>
-                   <!--/.Content-->
-                 </div>
-                 </div>
-                 <!--Modal: modalPush-->
 </ng-container>

@@ -5,6 +5,7 @@ import { AuthData } from '../auth/auth-data.interface';
 import { AuthService } from '../auth/auth.service';
 import { PrenotazioniService } from 'src/app/service/prenotazioni.service';
 import { OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -16,7 +17,7 @@ export class NavComponent implements OnInit{
 
   count:number=0;
 
-  constructor(private authSrv: AuthService, private userSrv: UserService, private pSrv: PrenotazioniService) {}
+  constructor(private authSrv: AuthService, private userSrv: UserService, private pSrv: PrenotazioniService, private router: Router) {}
 
   ngOnInit(): void {
       this.authSrv.user$.subscribe((_user) => {
@@ -37,6 +38,15 @@ export class NavComponent implements OnInit{
       this.pSrv.getSaldo().subscribe(lista => {
         this.count = lista.length;
       });
+
+      this.router.events.subscribe((val) => {
+        // see also
+        if(val instanceof NavigationEnd) {
+          this.pSrv.getSaldo().subscribe(lista => {
+            this.count = lista.length;
+          });
+        }
+    });
   }
 
   logout() {

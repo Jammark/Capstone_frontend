@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component } from '@angular/core';
 import { Meta } from 'src/app/model/meta';
 import { MeteService } from 'src/app/service/mete.service';
 import { OnInit } from '@angular/core';
@@ -13,7 +13,7 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './home-component.component.html',
   styleUrls: ['./home-component.component.scss']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit, AfterViewInit{
 
   mete: Meta[] = [];
   città?: Città[];
@@ -24,6 +24,9 @@ export class HomeComponent implements OnInit{
   checks:Map<number, boolean>= new Map();
 
   constructor(private authSrv: AuthService,private srv: MeteService, private router: Router){}
+  ngAfterViewInit(): void {
+    this.setup();
+  }
 
   ngOnInit(): void {
     this.srv.getMostRatedCities().subscribe(città => {
@@ -42,6 +45,9 @@ export class HomeComponent implements OnInit{
 
 
   });
+  }
+
+  setup():void{
 
     let h = window.innerHeight;
     let hc = document.getElementById('c')!.offsetTop +document.getElementsByTagName('nav')[0].offsetHeight;//document.getElementById('c')!.offsetHeight;
