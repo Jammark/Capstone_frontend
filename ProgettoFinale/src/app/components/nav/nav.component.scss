@@ -12,7 +12,7 @@ img{
   background-color: #37517e;
 }
 
-.nav-link.active{
+.collapse .nav-link.active{
   color: #209dd8;
   span{
     background-color: #209dd8 !important;
@@ -20,21 +20,21 @@ img{
   }
 }
 
-.nav-link:hover{
+.collapse .nav-link:hover{
   span{
     background-color: #209dd8 !important;
     color: white !important;
   }
 }
 
-.nav-link{
+.collapse .nav-link{
   span{
     font-size: 0.7rem;
   }
 }
 
 img{
-  height: 50px;
+  height: 80px;
   width: auto;
 }
 
@@ -45,6 +45,20 @@ img{
     color: #209dd8;
   }
 }
+
+#fa{
+  display: inline-block;
+  font-size: 22px;
+
+}
+
+/*
+.badge{
+  position: absolute;
+  top: -6px;
+  right: -10px;
+}
+*/
 
 
 

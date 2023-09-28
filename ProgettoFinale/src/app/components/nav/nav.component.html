@@ -52,9 +52,18 @@
 
          </div>
 
-          <h6 class="mb-0 mx-2 text-white">
+          <h6 class="mb-0 mx-2 text-white" *ngIf="user">
             Banvenuto {{ user?.user?.nome }}&nbsp;{{ user?.user?.cognome }}
         </h6>
+
+        <ul class="navbar-nav flex-row d-none d-md-flex align-items-center" *ngIf="user">
+          <li class="nav-item me-3 me-lg-1 active">
+            <a class="nav-link position-relative mt-1" href="#">
+              <span class="w-100 h-100"><i id="fa" class="fa-solid fa-bag-shopping fa-3x"></i></span>
+              <span *ngIf="this.count > 0" class="badge rounded-pill badge-notification bg-danger">{{this.count}}</span>
+            </a>
+          </li>
+        </ul>
 
         <button class="navbar-toggler"  aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation"  (click)="externalContent.toggle()"
         ><!--data-toggle="collapse" data-target="#navbarTogglerDemo01"-->
