@@ -6,6 +6,8 @@ import { AuthService } from '../auth/auth.service';
 import { PrenotazioniService } from 'src/app/service/prenotazioni.service';
 import { OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -42,7 +44,17 @@ export class NavComponent implements OnInit{
       this.router.events.subscribe((val) => {
         // see also
         if(val instanceof NavigationEnd) {
-          this.pSrv.getSaldo().subscribe(lista => {
+          this.pSrv.getSaldo().pipe(
+            catchError((error: HttpErrorResponse) => {
+              console.log('saldo error!', error.status.toString());
+              console.table(error);
+              if(error.status == 404){
+                console.log('saldo 404 status code!');
+                this.count =0;
+              }
+              return throwError('saldo non disponibile');
+            })
+          ).subscribe(lista => {
             this.count = lista.length;
           });
         }

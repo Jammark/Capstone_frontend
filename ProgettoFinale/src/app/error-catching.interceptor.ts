@@ -35,7 +35,7 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
               this.srv.register(payload.message);
              }
 
-             return throwError(errorMsg);
+             return throwError(error);
           })
     )
   }
