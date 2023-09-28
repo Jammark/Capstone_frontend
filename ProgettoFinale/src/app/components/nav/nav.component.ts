@@ -41,6 +41,12 @@ export class NavComponent implements OnInit{
         this.count = lista.length;
       });
 
+      this.pSrv.pacchetto$.subscribe(item => {
+        this.pSrv.getSaldo().subscribe(lista => {
+          this.count = lista.length;
+        });
+      })
+
       this.router.events.subscribe((val) => {
         // see also
         if(val instanceof NavigationEnd) {

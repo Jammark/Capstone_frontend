@@ -14,6 +14,10 @@ export class PrenotazioniService {
 
   trasporto$ = this.trasportoSubj.asObservable();
 
+  private pacchettoSubj = new BehaviorSubject<null | Prenotazione>(null);
+
+  pacchetto$ = this.pacchettoSubj.asObservable();
+
 
   constructor(private http: HttpClient) { }
 
@@ -37,5 +41,9 @@ export class PrenotazioniService {
   acquista(p:Prenotazione):Observable<Acquisto>{
     return this.http.post<Acquisto>(`${environment.baseURL}prenotazioni/acquisti/${p.id}`, null);
 
+  }
+
+  registraPacchetto(p:Prenotazione):void{
+    this.pacchettoSubj.next(p);
   }
 }
