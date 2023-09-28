@@ -97,6 +97,7 @@ selezionaPacchetto(p:Prenotazione):void{
   console.table(p);
 
   this.srv.prenota(p).subscribe(item => {
+    $('#modalSuccess'+this.meta!.id).appendTo("body").modal('show');
      this.router.navigate(['/saldo']);
   })
 }
